@@ -113,3 +113,68 @@ faf91cea76190f6d9f2355b197301ad0|untitled:2|37|11|v|markdown
 1c8864c395449de8bde75476bc4e0fbc|file:///Users/doddd/.config/nvim/init.vim|12|7|v|vim
 	Create a _machine_specific.vim file to adjust machine specific stuff, like python interpreter location
 	
+786a0c690b4e52add7fa04c563e7ea6e|untitled:2|8|1|v|markdown
+	  - WARNING: No Python executable found that can `import neovim`. Using the first available executable for diagnostics.
+	  - ERROR: Python provider error:
+	    - ADVICE:
+	      - provider/pythonx: Could not load Python 2:
+	          python2 not found in search path or not executable.
+	          /usr/bin/python2.7 does not have the "neovim" module. :help |provider-python|
+	          python2.6 not found in search path or not executable.
+	          /usr/bin/python does not have the "neovim" module. :help |provider-python|
+	  - INFO: Executable: Not found
+6fef762ecc9ff7a0747a00a0b75adc95|untitled:2|13|66|v|markdown
+	help |provider-python|
+	
+ca6ef5887e95a05a5fcc4cb9c91d50f0|file:///Users/doddd/.config/nvim/_machine_specific.vim|4|26|v|vim
+	usr/bin/python2'
+a752c026e2d19308924fab2bf266331b|untitled:3|15|1|v|markdown
+	
+	## Remote Plugins
+	  - WARNING: "fzf-gitignore" is not registered.
+	  - WARNING: Out of date
+	    - ADVICE:
+	      - Run `:UpdateRemotePlugins`
+	
+	## terminal
+	  - INFO: key_backspace (kbs) terminfo entry: key_backspace=^H
+	  - INFO: key_dc (kdch1) terminfo entry: key_dc=\E[3~
+	  - INFO: $COLORTERM='truecolor'
+	
+	health#provider#check
+	========================================================================
+	## Clipboard (optional)
+	  - OK: Clipboard tool found: pbcopy
+	
+	## Python 2 provider (optional)
+	  - INFO: Using: g:python_host_prog = "/usr/bin/python2"
+	  - ERROR: "/usr/bin/python2" was not found.
+	  - INFO: Executable: Not found
+	  - ERROR: Detected pip upgrade failure: Python executable can import "pynvim" but not "neovim": /usr/bin/python2
+	    - ADVICE:
+	      - Use that Python version to reinstall "pynvim" and optionally "neovim".
+	          pip uninstall pynvim neovim
+	          pip install pynvim
+	          pip install neovim  # only if needed by third-party software
+	
+	## Python 3 provider (optional)
+	  - INFO: Using: g:python3_host_prog = "/usr/bin/python3"
+	  - ERROR: "/usr/bin/python3" was not found.
+	  - INFO: Executable: Not found
+	  - ERROR: Detected pip upgrade failure: Python executable can import "pynvim" but not "neovim": /usr/bin/python3
+	    - ADVICE:
+	      - Use that Python version to reinstall "pynvim" and optionally "neovim".
+	          pip3 uninstall pynvim neovim
+	          pip3 install pynvim
+	          pip3 install neovim  # only if needed by third-party software
+	
+	## Ruby provider (optional)
+	  - INFO: Ruby: ruby 2.3.7p456 (2018-03-28 revision 63024) [universal.x86_64-darwin18]
+	  - WARNING: `neovim-ruby-host` not found.
+	    - ADVICE:
+	      - Run `gem install neovim` to ensure the neovim RubyGem is installed.
+	      - Run `gem environment` to ensure the gem bin directory is in $PATH.
+	      - If you are using rvm/rbenv/chruby, try "rehashing".
+	      - See :help |g:ruby_host_prog| for non-standard gem installations.
+	
+	

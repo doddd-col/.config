@@ -18,6 +18,8 @@ if empty(glob('~/.config/nvim/_machine_specific.vim'))
 endif
 source ~/.config/nvim/_machine_specific.vim
 
+let $NVIM_PYTHON_LOG_FILE="/tmp/nvim_log"
+
 set nocompatible
 filetype on
 filetype indent on
