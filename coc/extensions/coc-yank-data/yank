@@ -67,3 +67,49 @@ df347a373b8f92aa0ae3dd920a5ec2f6|file:///usr/local/Cellar/ranger/1.9.3/libexec/r
 	rows
 f833fe21346ad6cac955ae9c0a0bfef4|file:///Users/doddd/.config/nvim/coc-settings.json|37|3|V|jsonc
 			"snippet": "\ue0b",
+a21338b228ce5ccb9e392bce495fc72b|file:///Users/doddd/.config/nvim/init.vim|112|12|V|vim
+	" 改变光标
+	let &t_SI = "\<Esc>]50;CursorShape=1\x7"
+	let &t_SR = "\<Esc>]50;CursorShape=2\x7"
+	let &t_EI = "\<Esc>]50;CursorShape=0\x7"
+	if has('persistent_undo')
+775073800582965d2802079fb46eb3be|file:///Users/doddd/.config/nvim/init.vim|112|12|V|vim
+	" 改变光标
+	let &t_SI = "\<Esc>]50;CursorShape=1\x7"
+	let &t_SR = "\<Esc>]50;CursorShape=2\x7"
+	let &t_EI = "\<Esc>]50;CursorShape=0\x7"
+73d2584ee81b1414c724b440738910e8|file:///Users/doddd/.config/nvim/init.vim|104|12|v|vim
+	" should make scrolling faster
+	
+81bce8ede42d5c1a9bd3669d21efd691|file:///Users/doddd/.config/nvim/init.vim|104|1|V|vim
+	" should make scrolling faster
+93e748dd0c41dca014dcf873cfc86409|file:///Users/doddd/.config/nvim/init.vim|104|1|V|vim
+	set ttyfastset
+87eeab65d5b6c0ea75835cc39e1594b1|file:///Users/doddd/.config/nvim/init.vim|150|1|V|vim
+	augroup TermHandling
+339addb60843c27fcfe3bcf66e159eff|file:///Users/doddd/.config/nvim/init.vim|403|1|V|vim
+	"Plug 'Raimondi/delimitMate'
+8ba83159056941ddad59e84e9db72331|file:///Users/doddd/.config/nvim/init.vim|552|7|v|vim
+	deus
+	
+37919b17aec25a2ac8e8114ed7d88ebb|file:///Users/doddd/.config/nvim/default_configs/_machine_specific_default.vim|2|1|v|vim
+	" please read through this file and change what you need to change
+	
+724313d144995f80de2677146f4183da|untitled:2|48|12|v|markdown
+	Detected pip upgrade failure: Python executable can import "pynvim" but not "neovim": /usr/bin/python3
+	
+af381b163ca2762c8a7fd7a6bac6c7c1|untitled:2|49|7|v|markdown
+	ADVICE:
+	      - Use that Python version to reinstall "pynvim" and optionally "neovim".
+	          pip3 uninstall pynvim neovim
+	          pip3 install pynvim
+	          pip3 install neovim  # only if needed by third-party software
+	
+	
+faf91cea76190f6d9f2355b197301ad0|untitled:2|37|11|v|markdown
+	 Detected pip upgrade failure: Python executable can import "pynvim" but not "neovim": /usr/bin/python2
+	    - ADVICE:
+	
+1c8864c395449de8bde75476bc4e0fbc|file:///Users/doddd/.config/nvim/init.vim|12|7|v|vim
+	Create a _machine_specific.vim file to adjust machine specific stuff, like python interpreter location
+	

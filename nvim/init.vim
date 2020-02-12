@@ -63,6 +63,25 @@ noremap ` ~
 let g:SnazzyTransparent = 1
 
 let mapleader=" "
+" ===
+" === Editor behavior
+" ===
+
+" 不显示状态
+set noshowmode
+set inccommand=split
+" 显示不可打印字符
+set list
+set listchars=tab:\|\ ,trail:▫
+
+" 补全
+set completeopt=longest,noinsert,menuone,noselect,preview
+
+set notimeout
+" 记住位置
+set viewoptions=cursor,folds,slash,unix
+
+set lazyredraw             " Only redraw when necessary.
 syntax on	            " 语法高亮
 set number              " 显示行号
 set cursorline          " 突出显示当前行
@@ -82,11 +101,101 @@ set smartcase			" 智能大写
 set autoindent			" 回车后保持缩进
 set linebreak			" 不会再单词内换行
 set wrapmargin=2		" 换行时间隔
+set ttyfast "should make scrolling faster
+set updatetime=1000 " .vimrc, 根据光标位置自动更新高亮tag的间隔时间，单位为毫秒
+set colorcolumn=80
+" 修改边界颜色
+highlight ColorColumn ctermbg=blue
 
+set virtualedit=block
+
+silent !mkdir -p ~/.config/nvim/tmp/backup
+silent !mkdir -p ~/.config/nvim/tmp/undo
+silent !mkdir -p ~/.config/nvim/tmp/sessions
+set backupdir=~/.config/nvim/tmp/backup,.
+set directory=~/.config/nvim/tmp/backup,.
+
+if has('persistent_undo')
+	set undofile
+	set undodir=~/.config/nvim/tmp/undo,.
+endif
 " 改变光标
 let &t_SI = "\<Esc>]50;CursorShape=1\x7"
 let &t_SR = "\<Esc>]50;CursorShape=2\x7"
 let &t_EI = "\<Esc>]50;CursorShape=0\x7"
+
+
+" ===
+" === Terminal Behaviors
+" ===
+let g:neoterm_autoscroll = 1
+autocmd TermOpen term://* startinsert
+tnoremap <C-N> <C-\><C-N>
+tnoremap <C-O> <C-\><C-N><C-O>
+let g:terminal_color_0  = '#000000'
+let g:terminal_color_1  = '#FF5555'
+let g:terminal_color_2  = '#50FA7B'
+let g:terminal_color_3  = '#F1FA8C'
+let g:terminal_color_4  = '#BD93F9'
+let g:terminal_color_5  = '#FF79C6'
+let g:terminal_color_6  = '#8BE9FD'
+let g:terminal_color_7  = '#BFBFBF'
+let g:terminal_color_8  = '#4D4D4D'
+let g:terminal_color_9  = '#FF6E67'
+let g:terminal_color_10 = '#5AF78E'
+let g:terminal_color_11 = '#F4F99D'
+let g:terminal_color_12 = '#CAA9FA'
+let g:terminal_color_13 = '#FF92D0'
+let g:terminal_color_14 = '#9AEDFE'
+augroup TermHandling
+  autocmd!
+  " Turn off line numbers, listchars, auto enter insert mode and map esc to
+  " exit insert mode
+  autocmd TermOpen * setlocal listchars= nonumber norelativenumber
+    \ | startinsert
+    \ | tnoremap <Esc> <c-c>
+  autocmd FileType fzf call LayoutTerm(0.6, 'horizontal')
+augroup END
+
+function! LayoutTerm(size, orientation) abort
+  let timeout = 16.0
+  let animation_total = 120.0
+  let timer = {
+    \ 'size': a:size,
+    \ 'step': 1,
+    \ 'steps': animation_total / timeout
+  \}
+
+  if a:orientation == 'horizontal'
+    resize 1
+    function! timer.f(timer)
+      execute 'resize ' . string(&lines * self.size * (self.step / self.steps))
+      let self.step += 1
+    endfunction
+  else
+    vertical resize 1
+    function! timer.f(timer)
+      execute 'vertical resize ' . string(&columns * self.size * (self.step / self.steps))
+      let self.step += 1
+    endfunction
+  endif
+  call timer_start(float2nr(timeout), timer.f, {'repeat': float2nr(timer.steps)})
+endfunction
+
+" Open autoclosing terminal, with optional size and orientation
+function! OpenTerm(cmd, ...) abort
+  let orientation = get(a:, 2, 'horizontal')
+  if orientation == 'horizontal'
+    new | wincmd J
+  else
+    vnew | wincmd L
+  endif
+  call LayoutTerm(get(a:, 1, 0.5), orientation)
+  call termopen(a:cmd, {'on_exit': {j,c,e -> execute('if c == 0 | close | endif')}})
+endfunction
+" }}}
+" vim:fdm=marker
+
 
 " ===
 " === Cursor Movement
@@ -152,7 +261,7 @@ cnoremap <C-p> <Up>
 cnoremap <C-n> <Down>
 cnoremap <C-b> <Left>
 cnoremap <C-f> <Right>
-cnoremap <M-b> <S-Left>
+" cnoremap <M-b> <S-Left>
 cnoremap <M-w> <S-Right>
 
 
@@ -225,12 +334,25 @@ Plug 'vim-airline/vim-airline'
 Plug 'preservim/nerdtree'
 Plug 'KabbAmine/yowish.vim'
 Plug 'connorholyday/vim-snazzy'
+Plug 'bling/vim-bufferline'
+
+" Genreal Highlighter
+Plug 'jaxbot/semantic-highlight.vim'
+Plug 'chrisbra/Colorizer' " Show colors with :ColorHighlight
 
 " vimwiki
 Plug 'vimwiki/vimwiki'
 let g:vimwiki_list = [{'path': '~/vimwiki/',
                       \ 'syntax': 'markdown', 'ext': '.md'}]
 
+" find something
+Plug 'junegunn/fzf', { 'do': './install --bin' }
+Plug 'junegunn/fzf.vim'
+
+
+Plug 'fszymanski/fzf-gitignore', { 'do': ':UpdateRemotePlugins' }
+"Plug 'mhinz/vim-signify'
+Plug 'airblade/vim-gitgutter'
 
 " 启动显示
 Plug 'mhinz/vim-startify'
@@ -277,10 +399,19 @@ function g:Undotree_CustomMap()
 endfunc
 
 
+" Editor Enhancement
+Plug 'jiangmiao/auto-pairs'
+Plug 'terryma/vim-multiple-cursors'
+Plug 'scrooloose/nerdcommenter' " in <space>cn to comment a line
+
 " Markdown
 Plug 'iamcco/markdown-preview.nvim', { 'do': { -> mkdp#util#install_sync() }, 'for' :['markdown', 'vim-plug'] }
 Plug 'dhruvasagar/vim-table-mode', { 'on': 'TableModeToggle' }
+Plug 'theniceboy/bullets.vim'
 
+
+Plug 'junegunn/vim-after-object' " da= to delete what's after =
+Plug 'junegunn/vim-peekaboo'
 " ===
 " === Markdown Settings
 " ===
@@ -403,12 +534,23 @@ endif
     hi link ALEWarningSign WarningMsg
     " 强制 ale 进行语法检查 (没什么必要)
     nnoremap <leader>ac :ALELint<cr>
-
+Plug 'ajmwagar/vim-deus'
 
 " Always load the vim-devicons as the very last one.
 Plug 'ryanoasis/vim-devicons'
 call plug#end()
 
+" ===
+" === Dress up my vim
+" ===
+"在执行宏命令时，不进行显示重绘；在宏命令执行完成后，一次性重绘，以便提高性能。
+set lazyredraw
+set termguicolors	" enable true colors support
+let $NVIM_TUI_ENABLE_TRUE_COLOR=1
+set background=dark
+
+color deus
+hi NonText ctermfg=gray guifg=grey10
 
 " ===
 " === NERDTree
