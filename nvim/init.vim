@@ -366,15 +366,18 @@ Plug 'junegunn/fzf.vim'
 " ===
 " === FZF
 " ===
-set rtp+=/usr/local/opt/fzf
-set rtp+=/home/linuxbrew/.linuxbrew/opt/fzf
+" If installed using Homebrew
+"set rtp+=/usr/local/opt/fzf
+"
+"" If installed using git
+"set rtp+=~/.fzf
 noremap <C-p> :FZF<CR>
 noremap <C-f> :Ag<CR>
 noremap <C-h> :MRU<CR>
 noremap <C-t> :BTags<CR>
-noremap <C-l> :LinesWithPreview<CR>
-noremap <C-w> :Buffers<CR>
-"noremap ; :History:<CR>
+"noremap <C-l> :LinesWithPreview<CR>
+"noremap <C-w> :Buffers<CR>
+""noremap ; :History:<CR>
 
 autocmd! FileType fzf
 autocmd  FileType fzf set laststatus=0 noruler

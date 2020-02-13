@@ -270,3 +270,892 @@ b01cd5eb1c3b8418c5a11fee940ac379|file:///Users/doddd/.zshrc|110|1|V|zsh
 	plugins=(<++>)
 172522ec1028ab781d9dfd17eaca4427|file:///Users/doddd/.zshrc|11|30|v|zsh
 	david
+c10bc65470663ed29f470b7a004e1962|file:///Users/doddd/.zshrc|1|1|v|zsh
+	# If you come from bash you might have to change your $PATH.
+	export PATH=$HOME/bin:/usr/local/bin:$PATH
+	
+	export TERM=xterm-256color
+	# Path to your oh-my-zsh installation.
+	export ZSH=$HOME/.oh-my-zsh
+	export TERM_ITALICS=true
+	export RANGER_LOAD_DEFAULT_RC="false"
+	export TERM=screen-256color
+	export EDITOR=nvim
+	
+	alias c='clear'
+	alias cdiff='colordiff'
+	alias cs='cowsay'
+	alias dv='deactivate'
+	alias gc='git config credential.helper store'
+	alias ipy='ipython'
+	alias l='ls -la'
+	alias lg='lazygit'
+	alias ms='mailsync'
+	alias mt='neomutt'
+	alias r='echo $RANGER_LEVEL'
+	alias pu='python3 -m pudb'
+	alias ra='ranger'
+	# ra() {
+		#if [ -z "$RANGER_LEVEL" ]
+		#then
+			#ranger
+		#else
+			#exit
+		#fi
+	#}
+	alias s='neofetch'
+	alias g='onefetch'
+	alias sra='sudo -E ranger'
+	alias sudo='sudo -E'
+	alias vim='nvim'
+	alias gs='git config credential.helper store'
+	alias bat='sudo tlp bat'
+	alias ac='sudo tlp ac'
+	alias gy='git-yolo'
+	
+	
+	bindkey -v
+	bindkey -M vicmd "k" vi-insert
+	bindkey -M vicmd "K" vi-insert-bol
+	bindkey -M vicmd "n" vi-backward-char
+	bindkey -M vicmd "i" vi-forward-char
+	bindkey -M vicmd "N" vi-beginning-of-line
+	bindkey -M vicmd "I" vi-end-of-line
+	bindkey -M vicmd "e" down-line-or-history
+	bindkey -M vicmd "u" up-line-or-history
+	bindkey -M vicmd "l" undo
+	#bindkey -M vicmd "-" vi-rev-repeat-search
+	bindkey -M vicmd "=" vi-repeat-search
+	bindkey -M vicmd "h" vi-forward-word-end
+	
+	#function zle-line-init zle-keymap-select {
+		#RPS1="${${KEYMAP/vicmd/-- NOR --}/(main|viins)/-- INS --}"
+		#RPS2=$RPS1
+		#zle reset-prompt
+	#}
+	
+	function zle-keymap-select {
+		if [[ ${KEYMAP} == vicmd ]] || [[ $1 = 'block' ]]; then
+			echo -ne '\e[1 q'
+		elif [[ ${KEYMAP} == main ]] || [[ ${KEYMAP} == viins ]] || [[ ${KEYMAP} = '' ]] || [[ $1 = 'beam' ]]; then
+			echo -ne '\e[5 q'
+	  fi
+	}
+	zle -N zle-keymap-select
+	
+	# Use beam shape cursor on startup.
+	echo -ne '\e[5 q'
+	
+	# Use beam shape cursor for each new prompt.
+	preexec() {
+		echo -ne '\e[5 q'
+	}
+	
+	_fix_cursor() {
+		echo -ne '\e[5 q'
+	}
+	precmd_functions+=(_fix_cursor)
+	
+	
+	zle -N zle-line-init
+	zle -N zle-keymap-select
+	
+	KEYTIMEOUT=1
+	# Set name of the theme to load --- if set to "random", it will
+	# load a random theme each time oh-my-zsh is loaded, in which case,
+	# to know which specific one was loaded, run: echo $RANDOM_THEME
+	# See https://github.com/ohmyzsh/ohmyzsh/wiki/Themes
+	ZSH_THEME="robbyrussell"
+	
+	# Set list of themes to pick from when loading at random
+	# Setting this variable when ZSH_THEME=random will cause zsh to load
+	# a theme from this variable instead of looking in ~/.oh-my-zsh/themes/
+	# If set to an empty array, this variable will have no effect.
+	# ZSH_THEME_RANDOM_CANDIDATES=( "robbyrussell" "agnoster" )
+	
+	# Uncomment the following line to use case-sensitive completion.
+	# CASE_SENSITIVE="true"
+	
+	# Uncomment the following line to use hyphen-insensitive completion.
+	# Case-sensitive completion must be off. _ and - will be interchangeable.
+	# HYPHEN_INSENSITIVE="true"
+	
+	# Uncomment the following line to disable bi-weekly auto-update checks.
+	# DISABLE_AUTO_UPDATE="true"
+	
+	# Uncomment the following line to automatically update without prompting.
+	# DISABLE_UPDATE_PROMPT="true"
+	
+	# Uncomment the following line to change how often to auto-update (in days).
+	# export UPDATE_ZSH_DAYS=13
+	
+	# Uncomment the following line if pasting URLs and other text is messed up.
+	# DISABLE_MAGIC_FUNCTIONS=true
+	
+	# Uncomment the following line to disable colors in ls.
+	# DISABLE_LS_COLORS="true"
+	
+	# Uncomment the following line to disable auto-setting terminal title.
+	# DISABLE_AUTO_TITLE="true"
+	
+	# Uncomment the following line to enable command auto-correction.
+	# ENABLE_CORRECTION="true"
+	
+	# Uncomment the following line to display red dots whilst waiting for completion.
+	# COMPLETION_WAITING_DOTS="true"
+	
+	# Uncomment the following line if you want to disable marking untracked files
+	# under VCS as dirty. This makes repository status check for large repositories
+	# much, much faster.
+	# DISABLE_UNTRACKED_FILES_DIRTY="true"
+	
+	# Uncomment the following line if you want to change the command execution time
+	# stamp shown in the history command output.
+	# You can set one of the optional three formats:
+	# "mm/dd/yyyy"|"dd.mm.yyyy"|"yyyy-mm-dd"
+	# or set a custom format using the strftime function format specifications,
+	# see 'man strftime' for details.
+	# HIST_STAMPS="mm/dd/yyyy"
+	
+	# Would you like to use another custom folder than $ZSH/custom?
+	# ZSH_CUSTOM=/path/to/new-custom-folder
+	
+	# Which plugins would you like to load?
+	# Standard plugins can be found in ~/.oh-my-zsh/plugins/*
+	# Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
+	# Example format: plugins=(rails git textmate ruby lighthouse)
+	# Add wisely, as too many plugins slow down shell startup.
+	plugins=(git)
+	plugins=(git last-working-dir)
+	plugins=(colored-man-pages)
+	plugins=(vi-mode)
+	plugins=(sudo)
+	
+	source $ZSH/oh-my-zsh.sh
+	
+	# User configuration
+	
+	# export MANPATH="/usr/local/man:$MANPATH"
+	
+	# You may need to manually set your language environment
+	# export LANG=en_US.UTF-8
+	
+	# Preferred editor for local and remote sessions
+	# if [[ -n $SSH_CONNECTION ]]; then
+	#   export EDITOR='vim'
+	# else
+	#   export EDITOR='mvim'
+	# fi
+	
+	# Compilation flags
+	# export ARCHFLAGS="-arch x86_64"
+	
+	# Set personal aliases, overriding those provided by oh-my-zsh libs,
+	# plugins, and themes. Aliases can be placed here, though oh-my-zsh
+	# users are encouraged to define aliases within the ZSH_CUSTOM folder.
+	# For a full list of active aliases, run `alias`.
+	#
+	# Example aliases
+	# alias zshconfig="mate ~/.zshrc"
+	# alias ohmyzsh="mate ~/.oh-my-zsh"
+	[[ -s $(brew --prefix)/etc/profile.d/autojump.sh ]] && . $(brew --prefix)/etc/profile.d/autojump.sh
+	export LC_ALL=en_US.UTF-8  
+	export LANG=en_US.UTF-8
+	
+	
+	# fzf
+	export FZF_DEFAULT_OPTS='--bind ctrl-e:down,ctrl-u:up --preview "[[ $(file --mime {}) =~ binary ]] && echo {} is a binary file || (ccat --color=always {} || highlight -O ansi -l {} || cat {}) 2> /dev/null | head -500"'
+	export FZF_DEFAULT_COMMAND='ag --hidden --ignore .git -g ""'
+	export FZF_COMPLETION_TRIGGER='\'
+	export FZF_TMUX_HEIGHT='80%'
+	export FZF_PREVIEW_COMMAND='[[ $(file --mime {}) =~ binary ]] && echo {} is a binary file || (ccat --color=always {} || highlight -O ansi -l {} || cat {}) 2> /dev/null | head -500'
+	source ~/.config/zsh/key-bindings.zsh
+	source ~/.config/zsh/completion.zsh
+	
+b7dd967ac33a1e1d512e8488bbd20ed7|file:///Users/doddd/.config/zsh/zshrc|14|1|v|zsh
+	
+	#autoload edit-command-line; zle -N edit-command-line
+	#bindkey '^v' edit-command-line
+	
+	#alias av='source venv/bin/activate'
+	alias c='clear'
+	alias cdiff='colordiff'
+	alias cs='calcurse'
+	alias dv='deactivate'
+	alias gc='git config credential.helper store'
+	alias ipy='ipython'
+	alias l='ls -la'
+	alias lg='lazygit'
+	alias ms='mailsync'
+	alias mt='neomutt'
+	alias r='echo $RANGER_LEVEL'
+	alias pu='python3 -m pudb'
+	alias ra='ranger'
+	# ra() {
+		#if [ -z "$RANGER_LEVEL" ]
+		#then
+			#ranger
+		#else
+			#exit
+		#fi
+	#}
+	alias s='neofetch'
+	alias g='onefetch'
+	alias sra='sudo -E ranger'
+	alias sudo='sudo -E'
+	alias vim='nvim'
+	alias gs='git config credential.helper store'
+	alias bat='sudo tlp bat'
+	alias ac='sudo tlp ac'
+	alias gy='git-yolo'
+	
+	bindkey -v
+	bindkey -M vicmd "k" vi-insert
+	bindkey -M vicmd "K" vi-insert-bol
+	bindkey -M vicmd "n" vi-backward-char
+	bindkey -M vicmd "i" vi-forward-char
+	bindkey -M vicmd "N" vi-beginning-of-line
+	bindkey -M vicmd "I" vi-end-of-line
+	bindkey -M vicmd "e" down-line-or-history
+	bindkey -M vicmd "u" up-line-or-history
+	bindkey -M vicmd "l" undo
+	#bindkey -M vicmd "-" vi-rev-repeat-search
+	bindkey -M vicmd "=" vi-repeat-search
+	bindkey -M vicmd "h" vi-forward-word-end
+	
+	#function zle-line-init zle-keymap-select {
+		#RPS1="${${KEYMAP/vicmd/-- NOR --}/(main|viins)/-- INS --}"
+		#RPS2=$RPS1
+		#zle reset-prompt
+	#}
+	
+	function zle-keymap-select {
+		if [[ ${KEYMAP} == vicmd ]] || [[ $1 = 'block' ]]; then
+			echo -ne '\e[1 q'
+		elif [[ ${KEYMAP} == main ]] || [[ ${KEYMAP} == viins ]] || [[ ${KEYMAP} = '' ]] || [[ $1 = 'beam' ]]; then
+			echo -ne '\e[5 q'
+	  fi
+	}
+	zle -N zle-keymap-select
+	
+	# Use beam shape cursor on startup.
+	echo -ne '\e[5 q'
+	
+	# Use beam shape cursor for each new prompt.
+	preexec() {
+		echo -ne '\e[5 q'
+	}
+	
+	_fix_cursor() {
+		echo -ne '\e[5 q'
+	}
+	precmd_functions+=(_fix_cursor)
+	
+	
+	zle -N zle-line-init
+	zle -N zle-keymap-select
+	
+	KEYTIMEOUT=1
+	
+	# fzf
+	export FZF_DEFAULT_OPTS='--bind ctrl-e:down,ctrl-u:up --preview "[[ $(file --mime {}) =~ binary ]] && echo {} is a binary file || (ccat --color=always {} || highlight -O ansi -l {} || cat {}) 2> /dev/null | head -500"'
+	export FZF_DEFAULT_COMMAND='ag --hidden --ignore .git -g ""'
+	export FZF_COMPLETION_TRIGGER='\'
+	export FZF_TMUX_HEIGHT='80%'
+	export FZF_PREVIEW_COMMAND='[[ $(file --mime {}) =~ binary ]] && echo {} is a binary file || (ccat --color=always {} || highlight -O ansi -l {} || cat {}) 2> /dev/null | head -500'
+	source ~/.config/zsh/key-bindings.zsh
+	source ~/.config/zsh/completion.zsh
+	
+	if [ -f ~/.config/zsh/zshrc ]; then
+		source ~/.config/zsh/zshrc
+	f
+83c52c41b5beeb1cd51818a647e1fdae|file:///Users/doddd/.config/zsh/zshrc|1|1|v|zsh
+	#export GOPATH=$HOME/go
+	export PATH=$PATH:$HOME/.gem/ruby/2.6.0
+	#export PATH=$PATH:$HOME/go/bin
+	#export PATH=$PATH:/home/linuxbrew/.linuxbrew/bin
+	export PATH=$PATH:$HOME/.local/bin
+	export TERM=xterm-256color
+	#export PATH=$PATH:/home/david/prog/flutter/bin
+	export TERM=xterm-256color
+	export TERM_ITALICS=true
+	export RANGER_LOAD_DEFAULT_RC="false"
+	export TERM=screen-256color
+	e
+2101263640342506512e256dc9b84d37|file:///Users/doddd/.config/zsh/zshrc|1|1|V|zsh
+	xport EDITOR=nvim
+e7003d166e3320dcccf7acbb33d1218c|file:///Users/doddd/.config/zsh/zshrc|1|1|V|zsh
+	#export XDG_CONFIG_HOME=/home/doddd/.config
+1ce20e476d2eca7e1a8203c4a2be80de|file:///Users/doddd/.config/nvim/init.vim|369|1|V|vim
+	set rtp+=/usr/local/opt/fzf
+4b007d0a8c5c9fbb5d214ddb67983d34|file:///Users/doddd/.config/nvim/init.vim|374|1|V|vim
+	"set rtp+=/home/linuxbrew/.linuxbrew/opt/fzf
+5b1562d0f2b99d075493189590594cdc|file:///Users/doddd/.config/nvim/undotree_2|3|1|v|undotree
+	 *   >174<   (1 m)
+899bf973bcd732ea9224f3889811a3c0|file:///Users/doddd/.zshrc|155|1|V|zsh
+	plugins=(git)
+9ddbad0450dd51924bdac2619d7f8fcd|file:///Users/doddd/.zshrc|156|10|v|zsh
+	colored-man-pages
+e422b3fe9e902714707fce4460183c76|file:///Users/doddd/.zshrc|157|10|v|zsh
+	vi-mode
+d338b3f0f405eb5e51c8cc1e5ca66f02|file:///Users/doddd/.zshrc|158|10|v|zsh
+	sudo
+4f45ce46b90ec24af85eb4bfa772577d|file:///Users/doddd/.zshrc|91|1|V|zsh
+	# Set name of the theme to load --- if set to "random", it will
+5f1085e5287b0fa7d4f574bbdc23dd08|file:///Users/doddd/.zshrc|91|1|V|zsh
+	# load a random theme each time oh-my-zsh is loaded, in which case,
+c41a3864420589c8ce351a1b8c9cc5b8|file:///Users/doddd/.zshrc|91|1|V|zsh
+	# to know which specific one was loaded, run: echo $RANDOM_THEME
+af4785d51ee781825d9106a5cae3686e|file:///Users/doddd/.zshrc|91|1|V|zsh
+	# See https://github.com/ohmyzsh/ohmyzsh/wiki/Themes
+9974795a7ef713587c97c95373eef4b5|file:///Users/doddd/.zshrc|94|1|v|zsh
+	# Set list of themes to pick from when loading at random
+	# Setting this variable when ZSH_THEME=random will cause zsh to load
+	# a theme from this variable instead of looking in ~/.oh-my-zsh/themes/
+	# If set to an empty array, this variable will have no effect.
+	# ZSH_THEME_RANDOM_CANDIDATES=( "robbyrussell" "agnoster" )
+	
+	# Uncomment the following line to use case-sensitive completion.
+	# CASE_SENSITIVE="true"
+	
+	# Uncomment the following line to use hyphen-insensitive completion.
+	# Case-sensitive completion must be off. _ and - will be interchangeable.
+	# HYPHEN_INSENSITIVE="true"
+	
+	# Uncomment the following line to disable bi-weekly auto-update checks.
+	# DISABLE_AUTO_UPDATE="true"
+	
+	# Uncomment the following line to automatically update without prompting.
+	# DISABLE_UPDATE_PROMPT="true"
+	
+	# Uncomment the following line to change how often to auto-update (in days).
+	# export UPDATE_ZSH_DAYS=13
+	
+	# Uncomment the following line if pasting URLs and other text is messed up.
+	# DISABLE_MAGIC_FUNCTIONS=true
+	
+	# Uncomment the following line to disable colors in ls.
+	# DISABLE_LS_COLORS="true"
+	
+	# Uncomment the following line to disable auto-setting terminal title.
+	# DISABLE_AUTO_TITLE="true"
+	
+	# Uncomment the following line to enable command auto-correction.
+	# ENABLE_CORRECTION="true"
+	
+	# Uncomment the following line to display red dots whilst waiting for completion.
+	# COMPLETION_WAITING_DOTS="true"
+	
+	# Uncomment the following line if you want to disable marking untracked files
+	# under VCS as dirty. This makes repository status check for large repositories
+	# much, much faster.
+	# DISABLE_UNTRACKED_FILES_DIRTY="true"
+	
+	# Uncomment the following line if you want to change the command execution time
+	# stamp shown in the history command output.
+	# You can set one of the optional three formats:
+	# "mm/dd/yyyy"|"dd.mm.yyyy"|"yyyy-mm-dd"
+	# or set a custom format using the strftime function format specifications,
+	# see 'man strftime' for details.
+	# HIST_STAMPS="mm/dd/yyyy"
+	
+	# Would you like to use another custom folder than $ZSH/custom?
+	# ZSH_CUSTOM=/path/to/new-custom-folder
+	
+	# Which plugins would you like to load?
+	# Standard plugins can be found in ~/.oh-my-zsh/plugins/*
+	# Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
+	# Example format: plugins=(rails git textmate ruby lighthouse)
+	# Add wisely, as too many plugins slow down shell startup.
+	p
+f5cee794c5b5569625a274b5f49547a1|file:///Users/doddd/.zshrc|94|1|v|zsh
+	# Set list of themes to pick from when loading at random
+	# Setting this variable when ZSH_THEME=random will cause zsh to load
+	# a theme from this variable instead of looking in ~/.oh-my-zsh/themes/
+	# If set to an empty array, this variable will have no effect.
+	# ZSH_THEME_RANDOM_CANDIDATES=( "robbyrussell" "agnoster" )
+	
+	# Uncomment the following line to use case-sensitive completion.
+	# CASE_SENSITIVE="true"
+	
+	# Uncomment the following line to use hyphen-insensitive completion.
+	# Case-sensitive completion must be off. _ and - will be interchangeable.
+	# HYPHEN_INSENSITIVE="true"
+	
+	# Uncomment the following line to disable bi-weekly auto-update checks.
+	# DISABLE_AUTO_UPDATE="true"
+	
+	# Uncomment the following line to automatically update without prompting.
+	# DISABLE_UPDATE_PROMPT="true"
+	
+	# Uncomment the following line to change how often to auto-update (in days).
+	# export UPDATE_ZSH_DAYS=13
+	
+	# Uncomment the following line if pasting URLs and other text is messed up.
+	# DISABLE_MAGIC_FUNCTIONS=true
+	
+	# Uncomment the following line to disable colors in ls.
+	# DISABLE_LS_COLORS="true"
+	
+	# Uncomment the following line to disable auto-setting terminal title.
+	# DISABLE_AUTO_TITLE="true"
+	
+	# Uncomment the following line to enable command auto-correction.
+	# ENABLE_CORRECTION="true"
+	
+	# Uncomment the following line to display red dots whilst waiting for completion.
+	# COMPLETION_WAITING_DOTS="true"
+	
+	# Uncomment the following line if you want to disable marking untracked files
+	# under VCS as dirty. This makes repository status check for large repositories
+	# much, much faster.
+	# DISABLE_UNTRACKED_FILES_DIRTY="true"
+	
+	# Uncomment the following line if you want to change the command execution time
+	# stamp shown in the history command output.
+	# You can set one of the optional three formats:
+	# "mm/dd/yyyy"|"dd.mm.yyyy"|"yyyy-mm-dd"
+	# or set a custom format using the strftime function format specifications,
+	# see 'man strftime' for details.
+	# HIST_STAMPS="mm/dd/yyyy"
+	
+	# Would you like to use another custom folder than $ZSH/custom?
+	# ZSH_CUSTOM=/path/to/new-custom-folder
+	
+	# Which plugins would you like to load?
+	# Standard plugins can be found in ~/.oh-my-zsh/plugins/*
+	# Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
+	# Example format: plugins=(rails git textmate ruby lighthouse)
+	#
+46a4da9c72e30486c138b8e8469bedd4|file:///Users/doddd/.zshrc|94|1|v|zsh
+	 Add wisely, as too many plugins slow down shell startup.
+	
+e9c7cb5f3dc572ab49fb3ffd119f743a|file:///Users/doddd/.zshrc|98|1|v|zsh
+	# User configuration
+	
+	# export MANPATH="/usr/local/man:$MANPATH"
+	
+	# You may need to manually set your language environment
+	# export LANG=en_US.UTF-8
+	
+	# Preferred editor for local and remote sessions
+	# if [[ -n $SSH_CONNECTION ]]; then
+	#   export EDITOR='vim'
+	# else
+	#   export EDITOR='mvim'
+	# fi
+	
+	# Compilation flags
+	# export ARCHFLAGS="-arch x86_64"
+	
+	# Set personal aliases, overriding those provided by oh-my-zsh libs,
+	# plugins, and themes. Aliases can be placed here, though oh-my-zsh
+	# users are encouraged to define aliases within the ZSH_CUSTOM folder.
+	# For a full list of active aliases, run `alias`.
+	#
+	# Example aliases
+	# alias zshconfig="mate ~/.zshrc"
+	#
+59a3055bc2f3d5b5e0921aa63cf24305|file:///Users/doddd/.zshrc|99|1|V|zsh
+	[[ -s $(brew --prefix)/etc/profile.d/autojump.sh ]] && . $(brew --prefix)/etc/profile.d/autojump.sh
+fbb50edc4b43479ef2a88ce37a3f1d83|file:///Users/doddd/.zshrc|99|1|V|zsh
+	export LC_ALL=en_US.UTF-8  
+	export LANG=en_US.UTF-8
+2beb0bc63e60c986c8102d6089d4936e|file:///Users/doddd/.bash_profile|7|1|v|sh
+	export M2_HOME=~/developer_tool/apache-maven-3.6.3
+	export PATH=$PATH:$M2_HOME/bin
+	
+	
+ef73f8a81be000700cdb8a83e817cf26|file:///Users/doddd/.bash_profile|6|1|V|sh
+	export CLASSPATH
+	export M2_HOME=~/developer_tool/apache-maven-3.6.3
+f64d1ab381c609bfc0cd8191cfcc60f5|file:///Users/doddd/.bash_profile|8|1|v|sh
+	export PATH=$PATH:$M2_HOME/bin
+e144835c0786f12f9768f3fc99d5b38c|file:///Users/doddd/.zshrc|104|1|V|zsh
+	export CLASSPATH
+b99a716cbbfb546ea8afdefe0095700c|file:///Users/doddd/.zshrc|103|2|V|zsh
+		colored-man-pages 
+89d4b5aa13f65e79bc6fda9f24bb1787|file:///Users/doddd/.zshrc|102|2|V|zsh
+		last-working-dir 
+e2594950db34aaccedd1139f65bf0de4|file:///Users/doddd/.zshrc|106|2|v|zsh
+	zsh-syntax-hig
+3f5ff2553e51b658647e534bb2ad5635|file:///Users/doddd/.zshrc|106|2|v|zsh
+	hlig
+ce8f243fe44fc3d0bfc3d1aa55c7ed24|file:///Users/doddd/.zshrc|106|2|v|zsh
+	hting
+a621eac8e48d3bdec49b945c2fcf5b7e|file:///Users/doddd/.bash_profile|30|1|v|sh
+	alias proxy='export http_proxy=socks5://127.0.0.1:1080'
+	alias cip='curl cip.cc'
+	
+910a4669d873f27d689ac102260cb471|file:///Users/doddd/.zshrc|109|1|V|zsh
+		zsh-autosuggestions
+f12d3e6eaad0530dde739ef509208464|file:///Users/doddd/.zshrc|132|1|V|zsh
+	quote | cowsay
+d5567e1ac514173dc3a482dd14e2bfca|file:///Users/doddd/.zshrc|111|10|v|zsh
+	zsh-autosuggestions)
+d9119c7df49a32cc203958d4c22a4489|file:///Users/doddd/.zshrc|111|1|V|zsh
+	plugins=(uuu
+e0b18116051a922ec1f5f6f829d0b364|file:///Users/doddd/.zshrc|135|1|v|zsh
+	start_say[0]="佛祖保佑，永无Bug"
+	start_say[1]="wish you no bug"
+170e02e86972c2be8559884cc3c12254|file:///Users/doddd/.zshrc|135|22|v|zsh
+	RANDOM
+c8cbf2044f294f50f7b3156dc25d8e27|file:///Users/doddd/.zshrc|108|2|V|zsh
+		rand-quote
+528f46726c9720ccf17ac094d431d632|file:///Users/doddd/.zshrc|64|1|V|zsh
+	bindkey ',' autosuggest-accept
+7ddf32e17a6ac5ce04a8ecbf782ca509|file:///Users/doddd/.zshrc|133|2|v|zsh
+	random
+80e6589e428237cef5e251cd2e58163e|file:///Users/doddd/.zshrc|132|2|V|zsh
+		start_say]="wish you no bug"
+3968183beb6d64002320b0dd8b37f1c9|file:///Users/doddd/.zshrc|132|13|v|zsh
+	"wish you no bug"
+4fddc5da3ae73fc1adca30674debb6f3|file:///Users/doddd/.zshrc|131|31|v|zsh
+	"佛祖保佑，永无Bug"
+790029ee46cb138a1b4c2580a3d5dc66|file:///Users/doddd/.zshrc|132|2|V|zsh
+		start_say]=
+e144de2bce023c3cbd4e7349b8d82e07|file:///Users/doddd/.zshrc|133|2|V|zsh
+		echo $start_random
+85829151fdf0a35f215f6b7acace6fb1|file:///Users/doddd/.zshrc|1|1|v|zsh
+	# If you come from bash you might have to change your $PATH.
+	export PATH=$HOME/bin:/usr/local/bin:$PATH
+	
+	export TERM=xterm-256color
+	# Path to your oh-my-zsh installation.
+	export ZSH=$HOME/.oh-my-zsh
+	export TERM_ITALICS=true
+	export RANGER_LOAD_DEFAULT_RC="false"
+	export TERM=screen-256color
+	export EDITOR=nvim
+	
+	export LC_ALL=en_US.UTF-8  
+	export LANG=en_US.UTF-8
+	
+	alias c='clear'
+	alias cdiff='colordiff'
+	alias cs='cowsay'
+	alias dv='deactivate'
+	alias gc='git config credential.helper store'
+	alias ipy='ipython'
+	alias l='ls -la'
+	alias lg='lazygit'
+	alias ms='mailsync'
+	alias mt='neomutt'
+	alias r='echo $RANGER_LEVEL'
+	alias pu='python3 -m pudb'
+	alias ra='ranger'
+	# ra() {
+		#if [ -z "$RANGER_LEVEL" ]
+		#then
+			#ranger
+		#else
+			#exit
+		#fi
+	#}
+	alias s='neofetch'
+	alias g='onefetch'
+	alias sra='sudo -E ranger'
+	alias sudo='sudo -E'
+	alias vim='nvim'
+	alias gs='git config credential.helper store'
+	alias bat='sudo tlp bat'
+	alias ac='sudo tlp ac'
+	alias gy='git-yolo'
+	
+	alias hp="hexo clean && hexo g && hexo d"
+	alias gacp="git add . && git ci -m 'update' && git push"
+	alias proxy='export http_proxy=socks5://127.0.0.1:1080'
+	alias cip='curl cip.cc'
+	
+	bindkey -v
+	bindkey -M vicmd "k" vi-insert
+	bindkey -M vicmd "K" vi-insert-bol
+	bindkey -M vicmd "n" vi-backward-char
+	bindkey -M vicmd "i" vi-forward-char
+	bindkey -M vicmd "N" vi-beginning-of-line
+	bindkey -M vicmd "I" vi-end-of-line
+	bindkey -M vicmd "e" down-line-or-history
+	bindkey -M vicmd "u" up-line-or-history
+	bindkey -M vicmd "l" undo
+	#bindkey -M vicmd "-" vi-rev-repeat-search
+	bindkey -M vicmd "=" vi-repeat-search
+	bindkey -M vicmd "h" vi-forward-word-end
+	
+	#function zle-line-init zle-keymap-select {
+		#RPS1="${${KEYMAP/vicmd/-- NOR --}/(main|viins)/-- INS --}"
+		#RPS2=$RPS1
+		#zle reset-prompt
+	#}
+	
+	function zle-keymap-select {
+		if [[ ${KEYMAP} == vicmd ]] || [[ $1 = 'block' ]]; then
+			echo -ne '\e[1 q'
+		elif [[ ${KEYMAP} == main ]] || [[ ${KEYMAP} == viins ]] || [[ ${KEYMAP} = '' ]] || [[ $1 = 'beam' ]]; then
+			echo -ne '\e[5 q'
+	  fi
+	}
+	zle -N zle-keymap-select
+	
+	# Use beam shape cursor on startup.
+	echo -ne '\e[5 q'
+	
+	# Use beam shape cursor for each new prompt.
+	preexec() {
+		echo -ne '\e[5 q'
+	}
+	
+	_fix_cursor() {
+		echo -ne '\e[5 q'
+	}
+	precmd_functions+=(_fix_cursor)
+	
+	
+	zle -N zle-line-init
+	zle -N zle-keymap-select
+	
+	KEYTIMEOUT=1
+	
+	ZSH_THEME="robbyrussell"
+	
+	# plugs
+	plugins=(
+		git 
+		vi-mode 
+		z 
+		extract
+		zsh-syntax-highlighting
+		zsh-autosuggestions)
+	
+	source $ZSH/oh-my-zsh.sh
+	
+	alias ohmyzsh="mate ~/.oh-my-zsh"
+	
+	export M2_HOME=~/developer_tool/apache-maven-3.6.3
+	export PATH=$PATH:$M2_HOME/bin
+	
+	# add time
+	HIST_STAMPS="yyyy-mm-dd"
+	
+	# fzf
+	export FZF_DEFAULT_OPTS='--bind ctrl-e:down,ctrl-u:up --preview "[[ $(file --mime {}) =~ binary ]] && echo {} is a binary file || (ccat --color=always {} || highlight -O ansi -l {} || cat {}) 2> /dev/null | head -500"'
+	export FZF_DEFAULT_COMMAND='ag --hidden --ignore .git -g ""'
+	export FZF_COMPLETION_TRIGGER='\'
+	export FZF_TMUX_HEIGHT='80%'
+	export FZF_PREVIEW_COMMAND='[[ $(file --mime {}) =~ binary ]] && echo {} is a binary file || (ccat --color=always {} || highlight -O ansi -l {} || cat {}) 2> /dev/null | head -500'
+	source ~/.config/zsh/key-bindings.zsh
+	source ~/.config/zsh/completion.zsh
+	
+	# terminal start
+	function start(){
+		start_say=("wish you no bug" "佛祖保佑，永无Bug")
+		start_random=$[$RANDOM%2]
+		cowsay $start_say[$start_random]
+	}
+	start
+	
+0347b6796fadadc378f96722caea79e5|file:///Users/doddd/.config/zsh/zshrc|1|1|v|zsh
+	# If you come from bash you might have to change your $PATH.
+	export PATH=$HOME/bin:/usr/local/bin:$PATH
+	
+	export TERM=xterm-256color
+	# Path to your oh-my-zsh installation.
+	export ZSH=$HOME/.oh-my-zsh
+	export TERM_ITALICS=true
+	export RANGER_LOAD_DEFAULT_RC="false"
+	export TERM=screen-256color
+	export EDITOR=nvim
+	#export XDG_CONFIG_HOME=/home/doddd/.config
+	
+	alias c='clear'
+	alias cdiff='colordiff'
+	alias cs='cowsay'
+	alias dv='deactivate'
+	alias gc='git config credential.helper store'
+	alias ipy='ipython'
+	alias l='ls -la'
+	alias lg='lazygit'
+	alias ms='mailsync'
+	alias mt='neomutt'
+	alias r='echo $RANGER_LEVEL'
+	alias pu='python3 -m pudb'
+	alias ra='ranger'
+	# ra() {
+		#if [ -z "$RANGER_LEVEL" ]
+		#then
+			#ranger
+		#else
+			#exit
+		#fi
+	#}
+	alias s='neofetch'
+	alias g='onefetch'
+	alias sra='sudo -E ranger'
+	alias sudo='sudo -E'
+	alias vim='nvim'
+	alias gs='git config credential.helper store'
+	alias bat='sudo tlp bat'
+	alias ac='sudo tlp ac'
+	alias gy='git-yolo'
+	
+	
+	bindkey -v
+	bindkey -M vicmd "k" vi-insert
+	bindkey -M vicmd "K" vi-insert-bol
+	bindkey -M vicmd "n" vi-backward-char
+	bindkey -M vicmd "i" vi-forward-char
+	bindkey -M vicmd "N" vi-beginning-of-line
+	bindkey -M vicmd "I" vi-end-of-line
+	bindkey -M vicmd "e" down-line-or-history
+	bindkey -M vicmd "u" up-line-or-history
+	bindkey -M vicmd "l" undo
+	#bindkey -M vicmd "-" vi-rev-repeat-search
+	bindkey -M vicmd "=" vi-repeat-search
+	bindkey -M vicmd "h" vi-forward-word-end
+	
+	#function zle-line-init zle-keymap-select {
+		#RPS1="${${KEYMAP/vicmd/-- NOR --}/(main|viins)/-- INS --}"
+		#RPS2=$RPS1
+		#zle reset-prompt
+	#}
+	
+	function zle-keymap-select {
+		if [[ ${KEYMAP} == vicmd ]] || [[ $1 = 'block' ]]; then
+			echo -ne '\e[1 q'
+		elif [[ ${KEYMAP} == main ]] || [[ ${KEYMAP} == viins ]] || [[ ${KEYMAP} = '' ]] || [[ $1 = 'beam' ]]; then
+			echo -ne '\e[5 q'
+	  fi
+	}
+	zle -N zle-keymap-select
+	
+	# Use beam shape cursor on startup.
+	echo -ne '\e[5 q'
+	
+	# Use beam shape cursor for each new prompt.
+	preexec() {
+		echo -ne '\e[5 q'
+	}
+	
+	_fix_cursor() {
+		echo -ne '\e[5 q'
+	}
+	precmd_functions+=(_fix_cursor)
+	
+	
+	zle -N zle-line-init
+	zle -N zle-keymap-select
+	
+	KEYTIMEOUT=1
+	# Set name of the theme to load --- if set to "random", it will
+	# load a random theme each time oh-my-zsh is loaded, in which case,
+	# to know which specific one was loaded, run: echo $RANDOM_THEME
+	# See https://github.com/ohmyzsh/ohmyzsh/wiki/Themes
+	ZSH_THEME="robbyrussell"
+	
+	# Set list of themes to pick from when loading at random
+	# Setting this variable when ZSH_THEME=random will cause zsh to load
+	# a theme from this variable instead of looking in ~/.oh-my-zsh/themes/
+	# If set to an empty array, this variable will have no effect.
+	# ZSH_THEME_RANDOM_CANDIDATES=( "robbyrussell" "agnoster" )
+	
+	# Uncomment the following line to use case-sensitive completion.
+	# CASE_SENSITIVE="true"
+	
+	# Uncomment the following line to use hyphen-insensitive completion.
+	# Case-sensitive completion must be off. _ and - will be interchangeable.
+	# HYPHEN_INSENSITIVE="true"
+	
+	# Uncomment the following line to disable bi-weekly auto-update checks.
+	# DISABLE_AUTO_UPDATE="true"
+	
+	# Uncomment the following line to automatically update without prompting.
+	# DISABLE_UPDATE_PROMPT="true"
+	
+	# Uncomment the following line to change how often to auto-update (in days).
+	# export UPDATE_ZSH_DAYS=13
+	
+	# Uncomment the following line if pasting URLs and other text is messed up.
+	# DISABLE_MAGIC_FUNCTIONS=true
+	
+	# Uncomment the following line to disable colors in ls.
+	# DISABLE_LS_COLORS="true"
+	
+	# Uncomment the following line to disable auto-setting terminal title.
+	# DISABLE_AUTO_TITLE="true"
+	
+	# Uncomment the following line to enable command auto-correction.
+	# ENABLE_CORRECTION="true"
+	
+	# Uncomment the following line to display red dots whilst waiting for completion.
+	# COMPLETION_WAITING_DOTS="true"
+	
+	# Uncomment the following line if you want to disable marking untracked files
+	# under VCS as dirty. This makes repository status check for large repositories
+	# much, much faster.
+	# DISABLE_UNTRACKED_FILES_DIRTY="true"
+	
+	# Uncomment the following line if you want to change the command execution time
+	# stamp shown in the history command output.
+	# You can set one of the optional three formats:
+	# "mm/dd/yyyy"|"dd.mm.yyyy"|"yyyy-mm-dd"
+	# or set a custom format using the strftime function format specifications,
+	# see 'man strftime' for details.
+	# HIST_STAMPS="mm/dd/yyyy"
+	
+	# Would you like to use another custom folder than $ZSH/custom?
+	# ZSH_CUSTOM=/path/to/new-custom-folder
+	
+	# Which plugins would you like to load?
+	# Standard plugins can be found in ~/.oh-my-zsh/plugins/*
+	# Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
+	# Example format: plugins=(rails git textmate ruby lighthouse)
+	# Add wisely, as too many plugins slow down shell startup.
+	plugins=(git)
+	plugins=(git last-working-dir)
+	plugins=(colored-man-pages)
+	plugins=(vi-mode)
+	plugins=(sudo)
+	
+	source $ZSH/oh-my-zsh.sh
+	
+	# User configuration
+	
+	# export MANPATH="/usr/local/man:$MANPATH"
+	
+	# You may need to manually set your language environment
+	# export LANG=en_US.UTF-8
+	
+	# Preferred editor for local and remote sessions
+	# if [[ -n $SSH_CONNECTION ]]; then
+	#   export EDITOR='vim'
+	# else
+	#   export EDITOR='mvim'
+	# fi
+	
+	# Compilation flags
+	# export ARCHFLAGS="-arch x86_64"
+	
+	# Set personal aliases, overriding those provided by oh-my-zsh libs,
+	# plugins, and themes. Aliases can be placed here, though oh-my-zsh
+	# users are encouraged to define aliases within the ZSH_CUSTOM folder.
+	# For a full list of active aliases, run `alias`.
+	#
+	# Example aliases
+	# alias zshconfig="mate ~/.zshrc"
+	# alias ohmyzsh="mate ~/.oh-my-zsh"
+	[[ -s $(brew --prefix)/etc/profile.d/autojump.sh ]] && . $(brew --prefix)/etc/profile.d/autojump.sh
+	export LC_ALL=en_US.UTF-8  
+	export LANG=en_US.UTF-8
+	
+	
+	# fzf
+	export FZF_DEFAULT_OPTS='--bind ctrl-e:down,ctrl-u:up --preview "[[ $(file --mime {}) =~ binary ]] && echo {} is a binary file || (ccat --color=always {} || highlight -O ansi -l {} || cat {}) 2> /dev/null | head -500"'
+	export FZF_DEFAULT_COMMAND='ag --hidden --ignore .git -g ""'
+	export FZF_COMPLETION_TRIGGER='\'
+	export FZF_TMUX_HEIGHT='80%'
+	export FZF_PREVIEW_COMMAND='[[ $(file --mime {}) =~ binary ]] && echo {} is a binary file || (ccat --color=always {} || highlight -O ansi -l {} || cat {}) 2> /dev/null | head -500'
+	source ~/.config/zsh/key-bindings.zsh
+	source ~/.config/zsh/completion.zsh
+	
+	
+926b0066428e86dac579451fc56bba61|file:///Users/doddd/.config/zsh/zshrc|2|1|V|zsh
+	#         _     
