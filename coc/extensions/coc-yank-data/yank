@@ -207,3 +207,66 @@ dcd7c2853a5982347e1944454a5b6797|untitled:4|46|12|v|markdown
 	
 495ede3d060199c507c8708600b51784|untitled:4|46|12|v|markdown
 	Detected
+d0af335f9d9d2fa723e1cc4d7d53a620|file:///Users/doddd/.config/zsh/zshrc|19|1|v|zsh
+	alias c='clear'
+	alias cdiff='colordiff'
+	alias cs='calcurse'
+	alias dv='deactivate'
+	alias gc='git config credential.helper store'
+	alias ipy='ipython'
+	alias l='ls -la'
+	alias lg='lazygit'
+	alias ms='mailsync'
+	alias mt='neomutt'
+	alias r='echo $RANGER_LEVEL'
+	alias pu='python3 -m pudb'
+	alias ra='ranger'
+	# ra() {
+		#if [ -z "$RANGER_LEVEL" ]
+		#then
+			#ranger
+		#else
+			#exit
+		#fi
+	#}
+	alias s='neofetch'
+	alias g='onefetch'
+	alias sra='sudo -E ranger'
+	alias sudo='sudo -E'
+	alias vim='nvim'
+	alias gs='git config credential.helper store'
+	alias bat='sudo tlp bat'
+	alias ac='sudo tlp ac'
+	alias gy='git-yolo'
+	
+	
+973a34c861114391a42edbeacd4a50ae|file:///Users/doddd/.zshrc|105|1|V|zsh
+	plugins=<++>
+ce3f372a94d179db0a781f6d6df6f98c|file:///Users/doddd/.zshrc|105|11|v|zsh
+	<++>
+95ac9a35d588ffd966b4a539efbe42d0|file:///Users/doddd/.zshrc|105|1|V|zsh
+	plugins=(<++>)
+7cbe7655baa5e2739e23c7189f010cac|file:///Users/doddd/.zshrc|105|1|v|zsh
+	plugins=(<++>)
+	
+99708d531c50ad1df237dc5064e6e6c6|file:///Users/doddd/.config/nvim/init.vim|74|1|V|vim
+	let mapleader=" "
+646a87a69c00babaad33975572844242|file:///Users/doddd/.zshrc|108|1|v|zsh
+	plugins=(vi-mode)
+e8fd9f66d18ad6db8add93e2afc17f2b|file:///Users/doddd/.zshrc|109|9|v|zsh
+	(vi-mode)
+d1108164f5e477eb2f5a6d2deec1c740|file:///Users/doddd/.zshrc|109|10|v|zsh
+	vi-mode)
+	plugins=(vi-mode)
+	source $ZSH/oh-my-zsh.sh
+	
+	# User configuration
+b01cd5eb1c3b8418c5a11fee940ac379|file:///Users/doddd/.zshrc|110|1|V|zsh
+	plugins=()
+8e0b294a9a66a18200dd547f8cb818ea|file:///Users/doddd/.zshrc|107|1|V|zsh
+	plugins=(command-not-found)
+114f0da3c0172a8994d2b36d6694d397|file:///Users/doddd/.zshrc|104|1|V|zsh
+	plugins=(git last-working-dir)
+	plugins=(<++>)
+172522ec1028ab781d9dfd17eaca4427|file:///Users/doddd/.zshrc|11|30|v|zsh
+	david

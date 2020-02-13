@@ -11,6 +11,7 @@
     "coc-pyright": ">=1.1.21",
     "coc-python": ">=1.2.7",
     "coc-sourcekit": ">=0.0.1",
+    "coc-stylelint": ">=1.1.0",
     "coc-tailwindcss": ">=0.4.0",
     "coc-translator": ">=1.4.1",
     "coc-tslint": ">=1.0.17",

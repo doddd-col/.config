@@ -33,6 +33,9 @@ filetype indent on
 filetype plugin on
 filetype plugin indent on		" nerdtree required
 
+
+let mapleader=" "
+
 " 可以使用鼠标
 set mouse=a
 
@@ -71,7 +74,6 @@ noremap ` ~
 
 let g:SnazzyTransparent = 1
 
-let mapleader=" "
 " ===
 " === Editor behavior
 " ===
