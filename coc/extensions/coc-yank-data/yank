@@ -178,3 +178,32 @@ a752c026e2d19308924fab2bf266331b|untitled:3|15|1|v|markdown
 	      - See :help |g:ruby_host_prog| for non-standard gem installations.
 	
 	
+e6597969e8f9a5590362b4da6e3a5eb3|file:///Users/doddd/.config/nvim/init.vim|644|1|v|vim
+	#########
+	" ale
+	" 异步检查代码插件
+	 Plug 'w0rp/ale', { 'for': ['dosbatch','sh','zsh','python','go'] }
+	    " 用于检查 python 的工具，pylint
+	    " python2:pylint2, python3:pylint3
+	    let g:ale_python_pylint_executable = 'pylint3'
+	
+	    " 启动 golang 语法检查
+	     let g:ale_linters = {
+	        \ 'go' : ['gometalinter', 'gofmt'],
+	        \ 'zsh' : ['shellcheck']
+	        \ }
+	
+	    " 修改默认的提示符颜色
+	     " 使用:highlight-link 查看 link 子命令的帮助
+	     hi link ALEErrorSign ErrorMsg
+	    hi link ALEWarningSign WarningMsg
+	    " 强制 ale 进行语法检查 (没什么必要)
+	    nnoremap <leader>ac :ALELint<cr>
+	
+7c92ee1ad7fb97cdd61b7673c6d244bf|file:///Users/doddd/.config/nvim/init.vim|1|1|V|vim
+	" ===
+dcd7c2853a5982347e1944454a5b6797|untitled:4|46|12|v|markdown
+	Detected pip upgrade failure: Python executable can import "pynvim" but not "neovim": /usr/bin/python2
+	
+495ede3d060199c507c8708600b51784|untitled:4|46|12|v|markdown
+	Detected

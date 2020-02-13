@@ -1,3 +1,10 @@
+                  "__ _       
+  "___ ___  _ __  / _(_) __ _ 
+ "/ __/ _ \| '_ \| |_| |/ _` |
+"| (_| (_) | | | |  _| | (_| |
+ "\___\___/|_| |_|_| |_|\__, |
+                       "|___/ 
+
 " ===
 " === Auto load for first time uses
 " ===
@@ -341,6 +348,10 @@ Plug 'bling/vim-bufferline'
 " Genreal Highlighter
 Plug 'jaxbot/semantic-highlight.vim'
 Plug 'chrisbra/Colorizer' " Show colors with :ColorHighlight
+" ===
+" === Colorizer
+" ===
+let g:colorizer_syntax = 1
 
 " vimwiki
 Plug 'vimwiki/vimwiki'
@@ -350,11 +361,84 @@ let g:vimwiki_list = [{'path': '~/vimwiki/',
 " find something
 Plug 'junegunn/fzf', { 'do': './install --bin' }
 Plug 'junegunn/fzf.vim'
+" ===
+" === FZF
+" ===
+set rtp+=/usr/local/opt/fzf
+set rtp+=/home/linuxbrew/.linuxbrew/opt/fzf
+noremap <C-p> :FZF<CR>
+noremap <C-f> :Ag<CR>
+noremap <C-h> :MRU<CR>
+noremap <C-t> :BTags<CR>
+noremap <C-l> :LinesWithPreview<CR>
+noremap <C-w> :Buffers<CR>
+"noremap ; :History:<CR>
+
+autocmd! FileType fzf
+autocmd  FileType fzf set laststatus=0 noruler
+  \| autocmd BufLeave <buffer> set laststatus=2 ruler
+
+command! -bang -nargs=* Buffers
+  \ call fzf#vim#buffers(
+  \   '',
+  \   <bang>0 ? fzf#vim#with_preview('up:60%')
+  \           : fzf#vim#with_preview('right:0%', '?'),
+  \   <bang>0)
+
+
+command! -bang -nargs=* LinesWithPreview
+    \ call fzf#vim#grep(
+    \   'rg --with-filename --column --line-number --no-heading --color=always --smart-case . '.fnameescape(expand('%')), 1,
+    \   fzf#vim#with_preview({}, 'up:50%', '?'),
+    \   1)
+
+command! -bang -nargs=* Ag
+  \ call fzf#vim#ag(
+  \   '',
+  \   <bang>0 ? fzf#vim#with_preview('up:60%')
+  \           : fzf#vim#with_preview('right:50%', '?'),
+  \   <bang>0)
+
+
+command! -bang -nargs=* MRU call fzf#vim#history(fzf#vim#with_preview())
+
+command! -bang BTags
+  \ call fzf#vim#buffer_tags('', {
+  \     'down': '40%',
+  \     'options': '--with-nth 1 
+  \                 --reverse 
+  \                 --prompt "> " 
+  \                 --preview-window="70%" 
+  \                 --preview "
+  \                     tail -n +\$(echo {3} | tr -d \";\\\"\") {2} |
+  \                     head -n 16"'
+  \ })
+
 
 
 Plug 'fszymanski/fzf-gitignore', { 'do': ':UpdateRemotePlugins' }
+
+" ===
+" === fzf-gitignore
+" ===
+noremap <LEADER>gi :FzfGitignore<CR>
+
 "Plug 'mhinz/vim-signify'
 Plug 'airblade/vim-gitgutter'
+" ===================== Start of Plugin Settings =====================
+" ==
+" == GitGutter
+" ==
+let g:gitgutter_signs = 0
+let g:gitgutter_map_keys = 0
+let g:gitgutter_override_sign_column_highlight = 0
+let g:gitgutter_preview_win_floating = 1
+autocmd BufWritePost * GitGutter
+nnoremap <LEADER>gf :GitGutterFold<CR>
+nnoremap H :GitGutterPreviewHunk<CR>
+nnoremap <LEADER>g- :GitGutterPrevHunk<CR>
+nnoremap <LEADER>g= :GitGutterNextHunk<CR>
+
 
 " 启动显示
 Plug 'mhinz/vim-startify'
@@ -404,15 +488,48 @@ endfunc
 " Editor Enhancement
 Plug 'jiangmiao/auto-pairs'
 Plug 'terryma/vim-multiple-cursors'
+" ==
+" == vim-multiple-cursor
+" ==
+let g:multi_cursor_use_default_mapping = 0
+let g:multi_cursor_start_word_key = '<c-k>'
+let g:multi_cursor_select_all_word_key = '<a-k>'
+let g:multi_cursor_start_key = 'g<c-k>'
+let g:multi_cursor_select_all_key = 'g<a-k>'
+let g:multi_cursor_next_key = '<c-k>'
+let g:multi_cursor_prev_key = '<c-p>'
+let g:multi_cursor_skip_key = '<C-s>'
+let g:multi_cursor_quit_key = '<Esc>'
 Plug 'scrooloose/nerdcommenter' " in <space>cn to comment a line
 
 " Markdown
 Plug 'iamcco/markdown-preview.nvim', { 'do': { -> mkdp#util#install_sync() }, 'for' :['markdown', 'vim-plug'] }
 Plug 'dhruvasagar/vim-table-mode', { 'on': 'TableModeToggle' }
 Plug 'theniceboy/bullets.vim'
+" ===
+" === Bullets.vim
+" ===
+"let g:bullets_set_mappings = 0
+let g:bullets_enabled_file_types = [
+			\ 'markdown',
+			\ 'text',
+			\ 'gitcommit',
+			\ 'scratch'
+			\]
+
 
 
 Plug 'junegunn/vim-after-object' " da= to delete what's after =
+" ===
+" === vim-after-object
+" ===
+autocmd VimEnter * call after_object#enable('=', ':', '-', '#', ' ')
+
+Plug 'luochen1990/rainbow'
+" ===
+" === rainbow
+" ===
+let g:rainbow_active = 1
 Plug 'junegunn/vim-peekaboo'
 " ===
 " === Markdown Settings
@@ -436,6 +553,21 @@ Plug 'neoclide/coc.nvim', {'branch': 'release'}
 " ===
 " === coc
 " ===
+"解决coc.nvim大文件卡死状况
+let g:trigger_size = 0.5 * 1048576
+
+augroup hugefile
+  autocmd!
+  autocmd BufReadPre *
+        \ let size = getfsize(expand('<afile>')) |
+        \ if (size > g:trigger_size) || (size == -2) |
+        \   echohl WarningMsg | echomsg 'WARNING: altering options for this huge file!' | echohl None |
+        \   exec 'CocDisable' |
+        \ else |
+        \   exec 'CocEnable' |
+        \ endif |
+        \ unlet size
+augroup END
 " fix the most annoying bug that coc has
 silent! au BufEnter,BufRead,BufNewFile * silent! unmap if
 let g:coc_global_extensions = ['coc-python', 'coc-java', 'coc-vimlsp', 'coc-html', 'coc-json', 'coc-css', 'coc-tsserver', 'coc-yank', 'coc-lists', 'coc-gitignore', 'coc-vimlsp', 'coc-tailwindcss', 'coc-stylelint', 'coc-tslint', 'coc-lists', 'coc-git', 'coc-explorer', 'coc-pyright', 'coc-sourcekit', 'coc-translator']
@@ -516,26 +648,6 @@ endif
 
 
 
-"##############
-" ale
-" 异步检查代码插件
- Plug 'w0rp/ale', { 'for': ['dosbatch','sh','zsh','python','go'] }
-    " 用于检查 python 的工具，pylint
-    " python2:pylint2, python3:pylint3
-    let g:ale_python_pylint_executable = 'pylint3'
-
-    " 启动 golang 语法检查
-     let g:ale_linters = {
-        \ 'go' : ['gometalinter', 'gofmt'],
-        \ 'zsh' : ['shellcheck']
-        \ }
-
-    " 修改默认的提示符颜色
-     " 使用:highlight-link 查看 link 子命令的帮助
-     hi link ALEErrorSign ErrorMsg
-    hi link ALEWarningSign WarningMsg
-    " 强制 ale 进行语法检查 (没什么必要)
-    nnoremap <leader>ac :ALELint<cr>
 Plug 'ajmwagar/vim-deus'
 
 " Always load the vim-devicons as the very last one.
@@ -686,7 +798,16 @@ noremap <LEADER>rc :e ~/.config/nvim/init.vim<CR>
 
 
 
+" ===================== End of Plugin Settings =====================
 
 
+" ===
+" === Necessary Commands to Execute
+" ===
+exec "nohlsearch"
 
 
+" Open the _machine_specific.vim file if it has just been created
+if has_machine_specific_file == 0
+	exec "e ~/.config/nvim/_machine_specific.vim"
+endif
