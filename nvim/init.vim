@@ -104,7 +104,6 @@ set relativenumber		" 显示相对行号
 set wrap				" 自动换行
 set showcmd
 set wildmenu			" TAB键补全
-exec "nohlsearch"		
 set hlsearch			" 高亮搜索
 set incsearch			" 边输入边高亮
 set ignorecase			" 忽略大小写
@@ -337,6 +336,11 @@ map sh <C-w>t<C-w>K
 " Auto change directory to current dir
 autocmd BufEnter * silent! lcd %:p:h
 
+" Opening a terminal window
+noremap <LEADER>/ :set splitbelow<CR>:split<CR>:res +10<CR>:term<CR>
+" Indentation
+nnoremap < <<
+nnoremap > >>
 
 call plug#begin('~/.vim/plugged')
 
@@ -554,66 +558,65 @@ noremap <LEADER>= :lne<CR>
 
 
 " Auto Complete
-Plug 'neoclide/coc.nvim', {'branch': 'release'}
+"Plug 'neoclide/coc.nvim', {'branch': 'release'}
 " ===
 " === coc
 " ===
 "解决coc.nvim大文件卡死状况
-let g:trigger_size = 0.5 * 1048576
-
-augroup hugefile
-  autocmd!
-  autocmd BufReadPre *
-        \ let size = getfsize(expand('<afile>')) |
-        \ if (size > g:trigger_size) || (size == -2) |
-        \   echohl WarningMsg | echomsg 'WARNING: altering options for this huge file!' | echohl None |
-        \   exec 'CocDisable' |
-        \ else |
-        \   exec 'CocEnable' |
-        \ endif |
-        \ unlet size
-augroup END
-" fix the most annoying bug that coc has
-silent! au BufEnter,BufRead,BufNewFile * silent! unmap if
-let g:coc_global_extensions = ['coc-python', 'coc-java', 'coc-vimlsp', 'coc-html', 'coc-json', 'coc-css', 'coc-tsserver', 'coc-yank', 'coc-lists', 'coc-gitignore', 'coc-vimlsp', 'coc-tailwindcss', 'coc-stylelint', 'coc-tslint', 'coc-lists', 'coc-git', 'coc-explorer', 'coc-pyright', 'coc-sourcekit', 'coc-translator']
-"set statusline^=%{coc#status()}%{get(b:,'coc_current_function','')}
-" use <tab> for trigger completion and navigate to the next complete item
-function! s:check_back_space() abort
-	let col = col('.') - 1
-	return !col || getline('.')[col - 1]	=~ '\s'
-endfunction
-inoremap <silent><expr> <Tab>
-			\ pumvisible() ? "\<C-n>" :
-			\ <SID>check_back_space() ? "\<Tab>" :
-			\ coc#refresh()
-inoremap <expr> <S-Tab> pumvisible() ? "\<C-p>" : "\<S-Tab>"
-"inoremap <silent><expr> <CR> pumvisible() ? "\<C-y><CR>" : "\<CR>"
-function! s:check_back_space() abort
-	let col = col('.') - 1
-	return !col || getline('.')[col - 1]  =~# '\s'
-endfunction
-inoremap <silent><expr> <c-space> coc#refresh()
-" Useful commands
-nnoremap <silent> <space>y :<C-u>CocList -A --normal yank<cr>
-nmap <silent> gd <Plug>(coc-definition)
-nmap <silent> gy <Plug>(coc-type-definition)
-nmap <silent> gi <Plug>(coc-implementation)
-nmap <silent> gr <Plug>(coc-references)
-nmap <leader>rn <Plug>(coc-rename)
-nmap tt :CocCommand explorer<CR>
-" coc-todolist
-noremap ta :CocCommand todolist.create<CR>
-noremap td :CocCommand todolist.upload<CR>
-noremap tD :CocCommand todolist.download<CR>
-noremap tc :CocCommand todolist.clearNotice<CR>
-noremap tc :CocCommand todolist.clearNotice<CR>
-noremap tl :CocList --normal todolist<CR>
-" coc-translator
-nmap ts <Plug>(coc-translator-p)
-" coc-markmap
-command! Markmap CocCommand markmap.create
-
-
+"let g:trigger_size = 0.5 * 1048576
+"
+"augroup hugefile
+  "autocmd!
+  "autocmd BufReadPre *
+        "\ let size = getfsize(expand('<afile>')) |
+        "\ if (size > g:trigger_size) || (size == -2) |
+        "\   echohl WarningMsg | echomsg 'WARNING: altering options for this huge file!' | echohl None |
+        "\   exec 'CocDisable' |
+        "\ else |
+        "\   exec 'CocEnable' |
+        "\ endif |
+        "\ unlet size
+"augroup END
+"" fix the most annoying bug that coc has
+"silent! au BufEnter,BufRead,BufNewFile * silent! unmap if
+"let g:coc_global_extensions = ['coc-python', 'coc-java', 'coc-vimlsp', 'coc-html', 'coc-json', 'coc-css', 'coc-tsserver', 'coc-yank', 'coc-lists', 'coc-gitignore', 'coc-vimlsp', 'coc-tailwindcss', 'coc-stylelint', 'coc-tslint', 'coc-lists', 'coc-git', 'coc-explorer', 'coc-pyright', 'coc-sourcekit', 'coc-translator']
+"nmap <silent> <TAB> <Plug>(coc-range-select)
+"xmap <silent> <TAB> <Plug>(coc-range-select)
+"" use <tab> for trigger completion and navigate to the next complete item
+"function! s:check_back_space() abort
+	"let col = col('.') - 1
+	"return !col || getline('.')[col - 1]	=~ '\s'
+"endfunction
+"inoremap <silent><expr> <Tab>
+			"\ pumvisible() ? "\<C-n>" :
+			"\ <SID>check_back_space() ? "\<Tab>" :
+			"\ coc#refresh()
+"inoremap <expr> <S-Tab> pumvisible() ? "\<C-p>" : "\<S-Tab>"
+""inoremap <silent><expr> <CR> pumvisible() ? "\<C-y><CR>" : "\<CR>"
+"function! s:check_back_space() abort
+	"let col = col('.') - 1
+	"return !col || getline('.')[col - 1]  =~# '\s'
+"endfunction
+"inoremap <silent><expr> <c-space> coc#refresh()
+"" Text Objects
+"xmap kf <Plug>(coc-funcobj-i)
+"xmap af <Plug>(coc-funcobj-a)
+"omap kf <Plug>(coc-funcobj-i)
+"omap af <Plug>(coc-funcobj-a)
+"" Useful commands
+"nnoremap <silent> <space>y :<C-u>CocList -A --normal yank<cr>
+"nmap <silent> gd <Plug>(coc-definition)
+"nmap <silent> gy <Plug>(coc-type-definition)
+"nmap <silent> gi <Plug>(coc-implementation)
+"nmap <silent> gr <Plug>(coc-references)
+"nmap <leader>rn <Plug>(coc-rename)
+"nmap tt :CocCommand explorer<CR>
+"" coc-translator
+"nmap ts <Plug>(coc-translator-p)
+"" Remap for do codeAction of selected region, ex: `<leader>aap` for current paragraph
+"xmap <leader>a  <Plug>(coc-codeaction-selected)
+"nmap <leader>a  <Plug>(coc-codeaction-selected)
+"
 " Snippets
 Plug 'SirVer/ultisnips'
 Plug 'honza/vim-snippets'
@@ -709,35 +712,37 @@ set guifont=DroidSansMono_Nerd_Font:h11
 " ===
 " === MarkdownPreview
 " ===
-let g:mkdp_path_to_chrome = "open -a Google\\ Chrome"
 let g:mkdp_auto_start = 0
 let g:mkdp_auto_close = 1
 let g:mkdp_refresh_slow = 0
 let g:mkdp_command_for_global = 0
 let g:mkdp_open_to_the_world = 0
 let g:mkdp_open_ip = ''
-let g:mkdp_browser = ''
-let g:mkdp_echo_preview_url = 0
+let g:mkdp_echo_preview_url = 1
 let g:mkdp_browserfunc = ''
 let g:mkdp_preview_options = {
-    \ 'mkit': {},
-    \ 'katex': {},
-    \ 'uml': {},
-    \ 'maid': {},
-    \ 'disable_sync_scroll': 0,
-    \ 'sync_scroll_type': 'middle',
-    \ 'hide_yaml_meta': 1
-    \ }
+			\ 'mkit': {},
+			\ 'katex': {},
+			\ 'uml': {},
+			\ 'maid': {},
+			\ 'disable_sync_scroll': 0,
+			\ 'sync_scroll_type': 'middle',
+			\ 'hide_yaml_meta': 1
+			\ }
 let g:mkdp_markdown_css = ''
 let g:mkdp_highlight_css = ''
 let g:mkdp_port = ''
 let g:mkdp_page_title = '「${name}」'
+let g:mkdp_browser = 'Safari'
+
 
 
 " ===
 " === vim-table-mode
 " ===
 map <LEADER>tm :TableModeToggle<CR>
+let g:table_mode_cell_text_object_i_map = 'k<Bar>'
+
 
 
 
@@ -766,31 +771,41 @@ let g:ycm_cache_omnifunc=0
 let g:ycm_seed_identifiers_with_syntax=1
 
 
-" Quick compile key
-map r :call CompileRun()
-func! CompileRun()
-  exec "w"
-  if &filetype == 'c'
-    exec "!g++ % -o %<"
-    exec "!time ./%<"
-  elseif &filetype == 'cpp'
-    exec "!g++ % -o %<"
-    exec "!time ./%<"
-  elseif &filetype == 'java'
-    exec "!javac %"
-    exec "!time java %<"
-  elseif &filetype == 'sh'
-    :!time bash %
-  elseif &filetype == 'python'
-    silent! exec "!clear"
-    exec "!time sudo python3 %"
-  elseif &filetype == 'html'
-    exec "!firefox % &"
-  elseif &filetype == 'markdown'
-    exec "MarkdownPreview"
-  elseif &filetype == 'vimwiki'
-    exec "Vimwiki2HTMLBrowse"
-  endif
+" Compile function
+noremap r :call CompileRunGcc()<CR>
+func! CompileRunGcc()
+	exec "w"
+	if &filetype == 'c'
+		exec "!g++ % -o %<"
+		exec "!time ./%<"
+	elseif &filetype == 'cpp'
+		set splitbelow
+		exec "!g++ -std=c++11 % -Wall -o %<"
+		:sp
+		:res -15
+		:term ./%<
+	elseif &filetype == 'java'
+		exec "!javac %"
+		exec "!time java %<"
+	elseif &filetype == 'sh'
+		:!time bash %
+	elseif &filetype == 'python'
+		set splitbelow
+		:sp
+		:term python3 %
+	elseif &filetype == 'html'
+		"silent! exec "!".g:mkdp_browser." % &"
+		silent! exec '!open %'
+	elseif &filetype == 'markdown'
+		exec "MarkdownPreview"
+	elseif &filetype == 'tex'
+		silent! exec "VimtexStop"
+		silent! exec "VimtexCompile"
+	elseif &filetype == 'go'
+		set splitbelow
+		:sp
+		:term go run %
+	endif
 endfunc
 
 " Call figlet

@@ -1159,3 +1159,355 @@ e144de2bce023c3cbd4e7349b8d82e07|file:///Users/doddd/.zshrc|133|2|V|zsh
 	
 926b0066428e86dac579451fc56bba61|file:///Users/doddd/.config/zsh/zshrc|2|1|V|zsh
 	#         _     
+fd56742614457e2405da3fff4e7ee6d5|file:///Users/doddd/.zshrc|129|1|v|zsh
+	# terminal start
+	#function start(){
+	#	start_say=("wish you no bug" "佛祖保佑，永无Bug")
+	#	start_random=$[$RANDOM%2]
+	#	cowsay $start_say[$start_random]
+	#}
+	#star
+8a4d6aa6a484b6005ed3dba9bac2ba03|file:///Users/doddd/.config/zsh/zshrc|136|1|v|zsh
+	function start(){
+		start_say=("wish you no bug" "佛祖保佑，永无Bug")
+		start_random=$[$RANDOM%2]
+		cowsay $start_say[$start_random]
+	}
+	start
+	
+	
+3dd7a59796ac3c68ea07ab11037d5904|file:///Users/doddd/.config/nvim/init.vim|579|1|V|vim
+	"set statusline^=%{coc#status()}%{get(b:,'coc_current_function','')}
+c81b5b121048cd269da9d286e510924e|file:///Users/doddd/.config/nvim/init.vim|579|1|V|vim
+	" use <tab> for trigger completion and navigate to the next complete item
+ad7496bb2030bdf57bd52d20fcb7a583|file:///Users/doddd/.config/nvim/init.vim|579|32|v|vim
+	range-select)
+	xmap <silent> <TAB> <Plug>(coc-range-select)
+	" use <tab> for trigger completion and navigate to the next complete item	" use <tab> for trigger completion and navigate to the next complete item
+	function! s:check_back_space() abort
+		let col = col('.') - 1
+		return !col || getline('.')[col - 1]	=~ '\s'
+	endfunction
+	inoremap <silent><expr> <Tab>
+				\ pumvisible() ? "\<C-n>" :
+				\ <SID>check_back_space() ? "\<Tab>" :
+				\ coc#refresh()
+	inoremap <expr> <S-Tab> pumvisible() ? "\<C-p>" : "\<S-Tab>"
+	"inoremap <silent><expr> <CR> pumvisible() ? "\<C-y><CR>" : "\<CR>"
+	function! s:check_back_space() abort
+		let col = col('.') - 1
+		return !col || getline('.')[col - 1]  =~# '\s'
+	endfunction
+	inoremap <silent><expr> <c-space> coc#refresh()
+	" Useful commands
+	nnoremap <silent> <space>y :<C-u>CocList -A --normal yank<cr>
+	nmap <silent> gd <Plug>(coc-definition)
+	nmap <silent> gy <Plug>(coc-type-definition)
+	nmap <silent> gi <Plug>(coc-implementation)
+	nmap <silent> gr <Plug>(coc-references)
+	nmap <leader>rn <Plug>(coc-rename)
+	nmap tt :CocCommand explorer<CR>
+	" coc-todolist
+	noremap ta :CocCommand todolist.create<CR>
+	noremap td :CocCommand todolist.upload<CR>
+	noremap tD :CocCommand todolist.download<CR>
+	noremap tc :CocCommand todolist.clearNotice<CR>
+	noremap tc :CocCommand todolist.clearNotice<CR>
+	noremap tl :CocList --normal todolist<CR>
+	" coc-translator
+	nmap ts <Plug>(coc-translator-p)
+	" coc-markmap
+	command! Markmap CocCommand mark
+225da2ef7a6dec01cfb8d0feb0ca1a3f|file:///Users/doddd/.config/nvim/init.vim|579|1|V|vim
+	nmap <silent> <TAB> <Plug>(coc-map.create
+d62fe4f2627e0c9fae75a6da16b98709|file:///Users/doddd/.config/nvim/init.vim|341|1|V|vim
+	noremap <LEADER>/ :term<CR>	noremap <LEADER>/ :set splitbelow<CR>:split<CR>:res +10<CR>:term<CR>
+e863270127ca6116fd30e708cdc582fc|file:///Users/doddd/.zshrc|130|1|V|zsh
+	neofetch
+98964bcc9f6288963627dde2a9407f95|file:///Users/doddd/.config/nvim/init.vim|792|1|V|vim
+	    "exec "!Chrome % &"
+652ba202713fe85a54f92f63f96f48ad|file:///Users/doddd/IdeaProjects/demo/src/main/resources/static/index.html|14|1|V|html
+	Fri Feb 14 14:25:05 CST 2020
+d76a85d7000fb3391a0cc783a644bf93|file:///Users/doddd/.config/nvim/init.vim|107|1|V|vim
+	exec "nohlsearch"		
+5320888abe9a3e5099fa84638768b6a8|file:///Users/doddd/.config/nvim/init.vim|772|9|v|vim
+	compile key
+ed715ce7fea91429bad38493a9be33a2|file:///Users/doddd/.config/nvim/init.vim|715|1|v|vim
+	let g:mkdp_path_to_chrome = "open -a Google\\ Chrome"
+	let g:mkdp_auto_start = 0
+	let g:mkdp_auto_close = 1
+	let g:mkdp_refresh_slow = 0
+	let g:mkdp_command_for_global = 0
+	let g:mkdp_open_to_the_world = 0
+	let g:mkdp_open_ip = ''
+	let g:mkdp_browser = ''
+	let g:mkdp_echo_preview_url = 0
+	let g:mkdp_browserfunc = ''
+	let g:mkdp_preview_options = {
+	    \ 'mkit': {},
+	    \ 'katex': {},
+	    \ 'uml': {},
+	    \ 'maid': {},
+	    \ 'disable_sync_scroll': 0,
+	    \ 'sync_scroll_type': 'middle',
+	    \ 'hide_yaml_meta': 1
+	    \ }
+	let g:mkdp_markdown_css = ''
+	let g:mkdp_highlight_css = ''
+	let g:mkdp_port = ''
+	let g:mkdp_page_title = '「${name}」'
+	
+	
+	
+5f570178274123a34cc0bb8dcccff757|file:///Users/doddd/.config/nvim/init.vim|719|1|V|vim
+	" === MarkdownPreview
+d85286a06feb41975f45ab4a7a8a07a4|file:///Users/doddd/.config/nvim/init.vim|715|1|V|vim
+	" ===
+	" === vim-table-mode
+	" ===
+b666f7a6f18985b07fde6fc3db25ddc7|file:///Users/doddd/Documents/SpringBootWeb%E5%BC%80%E5%8F%91.md|49|1|V|vimwiki
+		"classpath:/static/", 
+		"classpath:/public/" }; 
+0d3317814ae700b47f6d2452f65af9a9|file:///Users/doddd/.config/nvim/init.vim|823|1|V|vim
+			silent! exec "!".g:mkdp_browser." % &"
+7b853cefabcbe6c02013442a33988467|file:///Users/doddd/.config/nvim/init.vim|773|1|v|vim
+	" Quick compile key
+	" map r :call CompileRun()
+	" func! CompileRun()
+	"   exec "w"
+	"   if &filetype == 'c'
+	"     exec "!g++ % -o %<"
+	"     exec "!time ./%<"
+	"   elseif &filetype == 'cpp'
+	"     exec "!g++ % -o %<"
+	"     exec "!time ./%<"
+	"   elseif &filetype == 'java'
+	"     exec "!javac %"
+	"     exec "!time java %<"
+	"   elseif &filetype == 'sh'
+	"     :!time bash %
+	"   elseif &filetype == 'python'
+	"     silent! exec "!clear"
+	"     exec "!time sudo python3 %"
+	"   elseif &filetype == 'html'
+	"     "exec "!Chrome % &"
+	"     exec "!open %"
+	"   elseif &filetype == 'markdown'
+	"     exec "MarkdownPreview"
+	"   elseif &filetype == 'vimwiki'
+	"     exec "Vimwiki2HTMLBrowse"
+	"   endif
+	" endfunc
+	
+055551af9d21737b74a06d263f800c3d|file:///Users/doddd/.config/ranger/rc.conf|415|42|v|conf
+	================
+b8b22deb1f424d77dea898a825d1f483|file:///Users/doddd/.config/ranger/rc.conf|414|31|v|conf
+	=======
+9e5bc357f1d2e22dcc00981c870a0426|file:///Users/doddd/.config/ranger/rc.conf|414|30|v|conf
+	"========Press enter to exit========"
+3f5d8fca89307e6811fff5dd34261b10|file:///Users/doddd/.config/ranger/rc.conf|415|78|v|conf
+	"================"
+bf910e62b110db406508cf07fb721c75|file:///Users/doddd/.config/ranger/rc.conf|414|31|v|conf
+	========P
+f3cd921a2e14011d58f81c14a88fd52f|file:///Users/doddd/.config/ranger/rc.conf|414|50|v|conf
+	========
+d1941f7b52c0beb3eb2cb335698ece85|file:///Users/doddd/.config/nvim/init.vim|738|1|V|vim
+	let g:mkdp_browser = 'Chrome'
+9464fa3a858f4ef945fb8d3f3fdec0d3|untitled:2|74|23|v|markdown
+	npm install -g neovim
+	
+565ade834a3c33ba808164eb3c39dc29|untitled:3|61|1|v|markdown
+	## Ruby provider (optional)
+	  - INFO: Ruby: ruby 2.3.7p456 (2018-03-28 revision 63024) [universal.x86_64-darwin18]
+	  - INFO: Host: /usr/local/bin/neovim-ruby-host
+	  - ERROR: Command timed out: gem list -ra '^neovim$'
+	  - ERROR: Failed to run: gem list -ra ^neovim$
+	    - ADVICE:
+	      - Make sure you're connected to the internet.
+	      - Are you behind a firewall or proxy?
+4bdea15116625e840dd09856fae04b45|file:///Users/doddd/Documents/SpringBoot%E6%97%A5%E5%BF%97.md|1|1|v|vimwiki
+	# SpringBoot日志
+e14b77ba3e2624ec87430986280303e2|file:///Users/doddd/.config/nvim/init.vim|738|1|V|vim
+	let g:mkdp_path_to_chrome = "open -a Google\\ Chrome"
+358548c6effad4bf60abe569840b95ca|file:///Users/doddd/.config/nvim/init.vim|737|1|V|vim
+	" default: ''
+78c6bb87d6b36fbe7460a8bb0ab87087|file:///Users/doddd/.config/nvim/init.vim|736|1|V|vim
+	" specify browser to open preview page
+	
+1f727190abf790d8ea647a5c5c5176e0|file:///Users/doddd/Documents/SpringBootWeb%E5%BC%80%E5%8F%91.md|1|1|v|vimwiki
+	# SpringBootWeb开发
+	使用SpringBoot：
+	1. 创建SpringBoot应用，选用我们需要的模块
+	2. SpringBoot默认配置好，只需要在配置文件中指定少量的配置即可
+	3. 业务开发
+	
+	**自动配置**
+	> xxxAutoConfiguration
+	> 帮我们给容器自动配置组件<br/>
+	> xxxProperties 配置类封装配置文件的内容 
+	
+	## SpringBoot对静态资源的映射规则
+	
+	```java
+	@ConfigurationProperties(prefix = "spring.resources", ignoreUnknownFields = false)
+	public class ResourceProperties {
+	```
+	
+	```java
+	@Override
+			public void addResourceHandlers(ResourceHandlerRegistry registry) {
+				if (!this.resourceProperties.isAddMappings()) {
+					logger.debug("Default resource handling disabled");
+					return;
+				}
+				Duration cachePeriod = this.resourceProperties.getCache().getPeriod();
+				CacheControl cacheControl = this.resourceProperties.getCache().getCachecontrol().toHttpCacheControl();
+				if (!registry.hasMappingForPattern("/webjars/**")) {
+					customizeResourceHandlerRegistration(registry.addResourceHandler("/webjars/**")
+							.addResourceLocations("classpath:/META-INF/resources/webjars/")
+							.setCachePeriod(getSeconds(cachePeriod)).setCacheControl(cacheControl));
+				}
+				String staticPathPattern = this.mvcProperties.getStaticPathPattern();
+				if (!registry.hasMappingForPattern(staticPathPattern)) {
+					customizeResourceHandlerRegistration(registry.addResourceHandler(staticPathPattern)
+							.addResourceLocations(getResourceLocations(this.resourceProperties.getStaticLocations()))
+							.setCachePeriod(getSeconds(cachePeriod)).setCacheControl(cacheControl));
+				}
+			}
+	```
+	1. 所有/web/jars/**,都在classpath:/META-INF/resources/webjars/找资源
+		- [webjars](https://www.webjars.org/):以jar包的方式引入静态资源
+	
+	2. "/**"访问当前项目路的任何资源（静态资源文件夹）
+		```java
+		private static final String[] CLASSPATH_RESOURCE_LOCATIONS = { 
+		"classpath:/META-INF/resources/",
+		"classpath:/resources/",
+		"classpath:/static/", 
+		"classpath:/public/" }; 
+	
+		"/"当前根路径
+		``` 
+	3. index 静态资源文件夹下的所有index.html页面，被“/**”映射
+	```java
+			@Bean
+			public WelcomePageHandlerMapping welcomePageHandlerMapping(ApplicationContext applicationContext,
+					FormattingConversionService mvcConversionService, ResourceUrlProvider mvcResourceUrlProvider) {
+				WelcomePageHandlerMapping welcomePageHandlerMapping = new WelcomePageHandlerMapping(
+						new TemplateAvailabilityProviders(applicationContext), applicationContext, getWelcomePage(),
+						this.mvcProperties.getStaticPathPattern());
+				welcomePageHandlerMapping.setInterceptors(getInterceptors(mvcConversionService, mvcResourceUrlProvider));
+				return welcomePageHandlerMapping;
+			}
+	```
+	
+	4. 修改网页图标
+	将图标改为favicon.ico放到静态资源下
+	
+	5. 重新指定静态资源文件夹(默认路径失效)
+	```yml
+	spring.resources.static-location=classpath:/website/,classpath:/html/
+	```
+	
+	
+93f725a07423fe1c889f448b33d21f46|file:///Users/doddd/vimwiki/%E6%A8%A1%E6%9D%BF%E5%BC%95%E6%93%8E.md|3|5|v|vimwiki
+	java
+773f85b1ec7098aaf6a2955cc1e8e0e5|file:///Users/doddd/vimwiki/%E6%A8%A1%E6%9D%BF%E5%BC%95%E6%93%8E.md|3|7|V|vimwiki
+		```xml
+		  	<dependency>
+				<groupId>org.springframework.boot</groupId>
+				<artifactId>spring-boot-starter-thymeleaf</artifactId>
+			</dependency>
+			
+			修改使用的版本(thymeleaf3 和 layout2 适配)
+			<properties>
+				<java.version>11</java.version>
+				<thymeleaf.version>3.0.2.RELEASE</thymeleaf.version>
+36a21341fe6eecb26584cacc7c9db196|file:///Users/doddd/vimwiki/%E6%A8%A1%E6%9D%BF%E5%BC%95%E6%93%8E.md|12|4|V|vimwiki
+				<thymeleaf.version>3.0.2.RELEASE</thymeleaf.version>
+b86c6c4ca9021be2dd446a74726c583c|file:///Users/doddd/vimwiki/%E6%A8%A1%E6%9D%BF%E5%BC%95%E6%93%8E.md|84|3|V|vimwiki
+			Page 17 of 106
+7b28d8b1343da976a29c74c6c1819817|untitled:3|7|1|v|markdown
+	[markdown-preview.nvim]: Can not execute pre build binary bundle to get version, will download latest pre build binary bundle
+	  - INFO: Pre build versio
+346f59c4fca8eca9ed6e75ed505b61ff|file:///Users/doddd/vimwiki/%E6%A8%A1%E6%9D%BF%E5%BC%95%E6%93%8E.md|35|4|v|vimwiki
+	<html lang="en" xmlns:th="http://www.thymeleaf.org">
+	
+4d8c68b047866418b22da599ac876a32|file:///Users/doddd/vimwiki/%E4%BF%AE%E6%94%B9thymeleaf%E7%89%88%E6%9C%AC%E5%87%BA%E7%8E%B0%E9%94%99%E8%AF%AF.md|1|1|V|vimwiki
+	successce
+57a9c8d8e454e1a1bb1677292b165ca8|file:///Users/doddd/.zshrc|50|14|v|zsh
+	'/Applications/Google\ Chrome.app/Contents/MacOS/Google\ Chrome'
+dc39cf30859c43095d4d3f325bcfd8ec|file:///Users/doddd/.config/nvim/init.vim|736|1|V|vim
+	let g:mkdp_browser = 'Safari'
+8595f0e86165fa9bbbc39fbf7184eca0|file:///Users/doddd/.config/nvim/init.vim|737|17|v|vim
+	er = 'Safari'
+	
+	
+	" ===
+	" === vim-table-mode
+	" ===
+	map <LEADER>tm :TableModeToggle<CR>
+	let g:table_mode_cell_text_object_i_map = 'k<Bar>'
+	
+	
+	
+	
+	" 日志级别,日志文件默认在workspace/eclimd.log
+	" 除了默认的info,还有trace,debug,warning,error,off
+	let g:EclimLogLevel = 'info'
+	" 让eclim配合ycm实现java等语言的自动补全
+	" 编辑的文件必须是eclipse的一个项目中的文件才会自动补全
+	" 这个变量的作用是(仅举例java文件):set omnifunc=eclim#java#complete#CodeComplete
+	let g:EclimCompletionMethod = 'omnifunc'
+	autocmd FileType java setlocal omnifunc=javacomplete#Complete
+	
+	" 自动高亮当前光标下的单词
+	 function! HighlightWordUnderCursor()
+	    if getline(".")[col(".")-1] !~# '[[:punct:][:blank:]]'
+	        exec 'match' 'Search' '/\V\<'.expand('<cword>').'\>/'
+	    else
+	        match none
+	    endif
+	endfunction
+	
+	
+	" 禁止缓存匹配项，每次都重新生成匹配项
+	let g:ycm_cache_omnifunc=0
+	" 语法关键字补全
+	let g:ycm_seed_identifiers_with_syntax=1
+	
+	
+	" Compile function
+	noremap r :call CompileRunGcc()<CR>
+	func! CompileRunGcc()
+		exec "w"
+		if &filetype == 'c'
+			exec "!g++ % -o %<"
+			exec "!time ./%<"
+		elseif &filetype == 'cpp'
+			set splitbelow
+			exec "!g++ -std=c++11 % -Wall -o %<"
+			:sp
+			:res -15
+			:term ./%<
+		elseif &filetype == 'java'
+			exec "!javac %"
+			exec "!time java %<"
+		elseif &filetype == 'sh'
+			:!time bash %
+		elseif &filetype == 'python'
+			set splitbelow
+			:sp
+			:term python3 %
+		elseif &filetype == 'html'
+			"silent! exec "!".g:mkdp_browser." % &"
+			silent! exec '!open %'
+		elseif &filetype == '
+5bfeddeddef5d631697e55862ead31f2|file:///Users/doddd/.config/nvim/init.vim|737|22|v|vim
+	'Safari'
+887fe2cab1c2842dc82dd41184b06912|file:///Users/doddd/.config/nvim/init.vim|737|1|V|vim
+	let g:mkdp_browser = 'open -a Google\\ Chrome'
+50de9bc68c93dc32d8c7c90593471760|file:///Users/doddd/.config/nvim/init.vim|738|23|v|vim
+	Safari
+3a7f563e82f3aa2b261cb1d3e8a2ae96|file:///Users/doddd/.config/nvim/init.vim|738|22|v|vim
+	'/Applications/Google\\ Chrome.app/Contents/MacOS/Google\\ Chrome'

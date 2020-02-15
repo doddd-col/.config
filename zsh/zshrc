@@ -133,12 +133,5 @@ source ~/.config/zsh/key-bindings.zsh
 source ~/.config/zsh/completion.zsh
 
 # terminal start
-function start(){
-	start_say=("wish you no bug" "佛祖保佑，永无Bug")
-	start_random=$[$RANDOM%2]
-	cowsay $start_say[$start_random]
-}
-start
-
-
+neofetch
 
