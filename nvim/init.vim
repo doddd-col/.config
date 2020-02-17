@@ -321,7 +321,7 @@ map <right> :vertical resize+5<CR>
 map tu :tabe<CR>
 " Move around tabs with tn and ti
 map tn :-tabnext<CR>
-map ti :tabnext<CR>
+map ti :+tabnext<CR>
 " Move the tabs with tmn and tmi
 noremap tmn :-tabmove<CR>
 noremap tmi :+tabmove<CR>
@@ -647,12 +647,7 @@ Plug 'jelera/vim-javascript-syntax', { 'for': ['vim-plug', 'php', 'html', 'javas
 " ========
 "Plug 'artur-shaik/vim-javacomplete2'
 
-" smartim
-" 功能和上面的 fctix.vim 插件相同
- " 但只适用于 mac osx 系统
- if has('mac')
-    Plug 'ybian/smartim'
-endif
+Plug 'CodeFalling/fcitx-vim-osx'
 
 
 
@@ -718,7 +713,7 @@ let g:mkdp_refresh_slow = 0
 let g:mkdp_command_for_global = 0
 let g:mkdp_open_to_the_world = 0
 let g:mkdp_open_ip = ''
-let g:mkdp_echo_preview_url = 1
+let g:mkdp_echo_preview_url = 0
 let g:mkdp_browserfunc = ''
 let g:mkdp_preview_options = {
 			\ 'mkit': {},
